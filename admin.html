@@ -1,184 +1,407 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SPORTSOFFICIAL007 LIVE | Admin Centre</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080d18">
+<title>SPORTSOFFICIAL007 LIVE | Admin</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      background: #080d18;
-      color: #ffffff;
-      padding: 22px;
-    }
-
-    header {
-      max-width: 1000px;
-      margin: 15px auto 30px;
-    }
-
-    .tag {
-      color: #00d9ff;
-      font-size: 12px;
-      letter-spacing: 3px;
-      font-weight: bold;
-    }
-
-    h1 {
-      font-size: 27px;
-      margin: 12px 0;
-    }
-
-    header p, .note {
-      color: #aab5c8;
-      line-height: 1.6;
-      font-size: 14px;
-    }
-
-    .grid {
-      max-width: 1000px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-    }
-
-    .card {
-      background: #111b2d;
-      border: 1px solid #263750;
-      border-radius: 14px;
-      padding: 20px;
-    }
-
-    .card h2 {
-      font-size: 17px;
-      margin-bottom: 9px;
-    }
-
-    .card p {
-      color: #aab5c8;
-      font-size: 13px;
-      line-height: 1.5;
-      min-height: 40px;
-      margin-bottom: 16px;
-    }
-
-    a.button {
-      display: inline-block;
-      background: #00c8ee;
-      color: #06101c;
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: bold;
-      padding: 11px 14px;
-      border-radius: 8px;
-    }
-
-    a.button:hover {
-      background: #ffffff;
-    }
-
-    .note {
-      max-width: 1000px;
-      margin: 25px auto;
-      padding: 16px;
-      border: 1px solid #34445c;
-      border-radius: 12px;
-      background: #101827;
-    }
-
-    footer {
-      max-width: 1000px;
-      margin: 30px auto;
-      color: #78869b;
-      font-size: 12px;
-      text-align: center;
-    }
-  </style>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#080d18;color:#f4f7fc;
+ font-family:Arial,sans-serif;padding:18px
+}
+header{max-width:950px;margin:15px auto 25px}
+.brand{color:#00d9ff;font-size:12px;font-weight:bold;letter-spacing:2px}
+h1{font-size:27px;margin:12px 0}
+p{color:#9aabc2;line-height:1.5;font-size:14px}
+nav{display:flex;gap:9px;flex-wrap:wrap;margin:20px 0}
+button,a.btn{
+ border:0;border-radius:8px;padding:12px 15px;
+ background:#00c9ee;color:#06101c;font-weight:bold;
+ cursor:pointer;text-decoration:none;font-size:13px
+}
+button.secondary{background:#24354d;color:white}
+button.danger{background:#52212d;color:#ffb6c0}
+button.active{background:#00c9ee;color:#06101c}
+main{max-width:950px;margin:auto}
+.panel{
+ background:#111b2c;border:1px solid #293b54;
+ padding:18px;border-radius:13px;margin-bottom:16px
+}
+label{display:block;font-size:13px;color:#c3cee0;margin:12px 0 6px}
+input,select,textarea{
+ width:100%;padding:12px;border-radius:8px;
+ border:1px solid #344761;background:#080f1c;
+ color:white;font-size:14px
+}
+textarea{min-height:220px;resize:vertical;font-family:monospace}
+.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.entry{
+ border:1px solid #34445c;border-radius:10px;
+ padding:14px;margin-top:12px;background:#0b1422
+}
+.entry h3{margin:0 0 8px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.small{font-size:12px;color:#9aabc2}
+.hidden{display:none}
+.status{color:#48e2ac;font-size:13px}
+footer{text-align:center;color:#8291a8;padding:25px;font-size:12px}
+@media(max-width:520px){
+ .formgrid{grid-template-columns:1fr}
+ h1{font-size:23px}
+}
+</style>
 </head>
 
 <body>
 
-  <header>
-    <div class="tag">SPORTSOFFICIAL007 LIVE</div>
-    <h1>Admin Control Centre</h1>
-    <p>Manage your sports website content through your authorised GitHub account.</p>
-  </header>
+<header>
+ <div class="brand">SPORTSOFFICIAL007 LIVE</div>
+ <h1>Admin Control Centre</h1>
+ <p>Manage your sports website content from one dashboard.</p>
+ <nav>
+  <button class="active" data-tab="matches">Live Matches</button>
+  <button class="secondary" data-tab="fixtures">Fixtures</button>
+  <button class="secondary" data-tab="results">Results</button>
+ </nav>
+</header>
 
-  <main class="grid">
+<main>
 
-    <section class="card">
-      <h2>🏟️ Website Content</h2>
-      <p>Edit the main website settings, sports categories and subscription popup.</p>
-      <a class="button" href="https://github.com/abhimanyu-x-cmyk/SPORTS-OFFICIAL007-LIVE/edit/main/data/site-content.json" target="_blank">Edit Content</a>
-    </section>
+ <section class="panel">
+  <h2 id="sectionTitle">🔴 Live Match Manager</h2>
+  <p id="sectionDescription">Add and update match information.</p>
 
-    <section class="card">
-      <h2>🔴 Live Matches & Scores</h2>
-      <p>Update match information and manually maintained score data.</p>
-      <a class="button" href="https://github.com/abhimanyu-x-cmyk/SPORTS-OFFICIAL007-LIVE/edit/main/data/site-content.json" target="_blank">Manage Matches</a>
-    </section>
+  <div id="entries"></div>
+ </section>
 
-    <section class="card">
-      <h2>📅 Fixtures</h2>
-      <p>Manage upcoming match schedules and fixture information.</p>
-      <a class="button" href="https://github.com/abhimanyu-x-cmyk/SPORTS-OFFICIAL007-LIVE/edit/main/data/site-content.json" target="_blank">Manage Fixtures</a>
-    </section>
+ <section class="panel">
+  <h2 id="formTitle">Add New Match</h2>
 
-    <section class="card">
-      <h2>🏆 Results</h2>
-      <p>Update completed match results.</p>
-      <a class="button" href="https://github.com/abhimanyu-x-cmyk/SPORTS-OFFICIAL007-LIVE/edit/main/data/site-content.json" target="_blank">Manage Results</a>
-    </section>
+  <form id="entryForm">
+   <div class="formgrid">
+    <div>
+     <label for="sport">Sport</label>
+     <select id="sport" required>
+      <option>Cricket</option>
+      <option>Football</option>
+      <option>Basketball</option>
+      <option>Tennis</option>
+      <option>Hockey</option>
+      <option>Badminton</option>
+      <option>Volleyball</option>
+      <option>Swimming</option>
+      <option>Athletics</option>
+      <option>Boxing</option>
+      <option>Wrestling</option>
+      <option>Other Sports</option>
+     </select>
+    </div>
 
-    <section class="card">
-      <h2>🥇 Olympics</h2>
-      <p>Manage Olympic events and medal information.</p>
-      <a class="button" href="https://github.com/abhimanyu-x-cmyk/SPORTS-OFFICIAL007-LIVE/edit/main/data/site-content.json" target="_blank">Manage Olympics</a>
-    </section>
+    <div>
+     <label for="date">Date</label>
+     <input id="date" type="date">
+    </div>
 
-    <section class="card">
-      <h2>♿ Paralympics</h2>
-      <p>Manage Paralympic events and medal information.</p>
-      <a class="button" href="https://github.com/abhimanyu-x-cmyk/SPORTS-OFFICIAL007-LIVE/edit/main/data/site-content.json" target="_blank">Manage Paralympics</a>
-    </section>
+    <div>
+     <label for="teamA">Team / Player 1</label>
+     <input id="teamA" required placeholder="India">
+    </div>
 
-    <section class="card">
-      <h2>🎬 Highlights</h2>
-      <p>Add or update links to authorised sports highlights.</p>
-      <a class="button" href="https://github.com/abhimanyu-x-cmyk/SPORTS-OFFICIAL007-LIVE/edit/main/data/site-content.json" target="_blank">Manage Highlights</a>
-    </section>
+    <div>
+     <label for="teamB">Team / Player 2</label>
+     <input id="teamB" required placeholder="Australia">
+    </div>
 
-    <section class="card">
-      <h2>📢 Announcements</h2>
-      <p>Update website announcements and important notices.</p>
-      <a class="button" href="https://github.com/abhimanyu-x-cmyk/SPORTS-OFFICIAL007-LIVE/edit/main/data/site-content.json" target="_blank">Manage Notices</a>
-    </section>
+    <div>
+     <label for="score">Score / Result</label>
+     <input id="score" placeholder="Enter verified score">
+    </div>
 
-    <section class="card">
-      <h2>🌐 View Website</h2>
-      <p>Open the public SPORTSOFFICIAL007 LIVE website.</p>
-      <a class="button" href="https://abhimanyu-x-cmyk.github.io/SPORTS-OFFICIAL007-LIVE/" target="_blank">Open Website</a>
-    </section>
+    <div>
+     <label for="time">Match Time</label>
+     <input id="time" placeholder="7:00 PM">
+    </div>
+   </div>
 
-  </main>
+   <label for="detail">Additional Information</label>
+   <input id="detail" placeholder="Venue or match status">
 
-  <div class="note">
-    <strong>Important:</strong> This page is an admin shortcut panel, not a private login system.
-    GitHub requires an authorised account with repository write access before changes can be saved.
-    Never put your GitHub password or access token in this website.
+   <label for="url">Official Information Link (optional)</label>
+   <input id="url" type="url" placeholder="https://example.com">
+
+   <div class="actions">
+    <button type="submit" id="saveButton">Add Match</button>
+    <button type="button" class="secondary" onclick="resetForm()">Cancel</button>
+   </div>
+  </form>
+ </section>
+
+ <section class="panel">
+  <h2>📦 Publish Website Data</h2>
+  <p>Generate your updated central content file after editing.</p>
+
+  <button onclick="generateJSON()">Generate Updated JSON</button>
+
+  <label for="output">Updated site-content.json</label>
+  <textarea id="output" placeholder="Your updated JSON will appear here..." spellcheck="false"></textarea>
+
+  <div class="actions">
+   <button onclick="copyJSON()">Copy JSON</button>
+   <a class="btn" href="https://github.com/abhimanyu-x-cmyk/SPORTS-OFFICIAL007-LIVE/edit/main/data/site-content.json" target="_blank" rel="noopener">Open GitHub Editor</a>
   </div>
 
-  <footer>
-    SPORTSOFFICIAL007 LIVE · Admin Centre · Version 1.0
-  </footer>
+  <p class="small">
+   Copy the generated JSON, replace the contents of site-content.json
+   in GitHub, and commit the change to publish it.
+  </p>
+  <p id="status" class="status" aria-live="polite"></p>
+ </section>
+
+ <section class="panel">
+  <h2>🌐 Website Links</h2>
+  <div class="actions">
+   <a class="btn" href="./" target="_blank">View Website</a>
+   <a class="btn" href="https://github.com/abhimanyu-x-cmyk/SPORTS-OFFICIAL007-LIVE" target="_blank" rel="noopener">Open Repository</a>
+  </div>
+ </section>
+
+</main>
+
+<footer>SPORTSOFFICIAL007 LIVE · Admin Centre V2.0</footer>
+
+<script>
+const DATA_URL = "./data/site-content.json";
+
+let siteData = null;
+let currentTab = "matches";
+let editingIndex = -1;
+
+const sections = {
+ matches: {
+  title: "🔴 Live Match Manager",
+  description: "Manage live match information and scores.",
+  form: "Add New Match"
+ },
+ fixtures: {
+  title: "📅 Fixtures Manager",
+  description: "Manage upcoming sports fixtures.",
+  form: "Add New Fixture"
+ },
+ results: {
+  title: "🏁 Results Manager",
+  description: "Manage completed match results.",
+  form: "Add New Result"
+ }
+};
+
+const $ = id => document.getElementById(id);
+
+async function initialize() {
+ try {
+  const response = await fetch(DATA_URL, {cache:"no-store"});
+  if (!response.ok) throw new Error("Content file unavailable");
+
+  siteData = await response.json();
+
+  ["matches","fixtures","results"].forEach(key => {
+   if (!Array.isArray(siteData[key])) siteData[key] = [];
+  });
+
+  render();
+  $("status").textContent = "Website data loaded successfully.";
+
+ } catch(error) {
+  $("status").textContent =
+   "Could not load website data. Check the public JSON file.";
+ }
+}
+
+function switchTab(tab) {
+ currentTab = tab;
+ editingIndex = -1;
+
+ document.querySelectorAll("nav button").forEach(button => {
+  const active = button.dataset.tab === tab;
+  button.className = active ? "active" : "secondary";
+ });
+
+ $("sectionTitle").textContent = sections[tab].title;
+ $("sectionDescription").textContent = sections[tab].description;
+ $("formTitle").textContent = sections[tab].form;
+ $("saveButton").textContent =
+  tab === "matches" ? "Add Match" :
+  tab === "fixtures" ? "Add Fixture" : "Add Result";
+
+ resetForm();
+ render();
+}
+
+document.querySelectorAll("nav button").forEach(button => {
+ button.addEventListener("click", () => switchTab(button.dataset.tab));
+});
+
+function render() {
+ const container = $("entries");
+ container.replaceChildren();
+
+ const list = siteData?.[currentTab] || [];
+
+ if (!list.length) {
+  const empty = document.createElement("p");
+  empty.className = "small";
+  empty.textContent = "No entries yet. Add your first one below.";
+  container.appendChild(empty);
+  return;
+ }
+
+ list.forEach((item,index) => {
+  const card = document.createElement("div");
+  card.className = "entry";
+
+  const title = document.createElement("h3");
+  title.textContent = item.title ||
+   [item.teamA,item.teamB].filter(Boolean).join(" vs ") ||
+   item.event || "Sports entry";
+
+  const info = document.createElement("p");
+  info.className = "small";
+  info.textContent = [
+   item.sport,
+   item.score ? "Score: " + item.score : "",
+   item.date,
+   item.time
+  ].filter(Boolean).join(" · ");
+
+  const actions = document.createElement("div");
+  actions.className = "actions";
+
+  const edit = document.createElement("button");
+  edit.textContent = "Edit";
+  edit.onclick = () => editEntry(index);
+
+  const remove = document.createElement("button");
+  remove.textContent = "Delete";
+  remove.className = "danger";
+  remove.onclick = () => deleteEntry(index);
+
+  actions.append(edit,remove);
+  card.append(title,info,actions);
+  container.appendChild(card);
+ });
+}
+
+$("entryForm").addEventListener("submit", event => {
+ event.preventDefault();
+
+ if (!siteData) {
+  $("status").textContent = "Website data has not loaded.";
+  return;
+ }
+
+ const item = {
+  sport: $("sport").value,
+  teamA: $("teamA").value.trim(),
+  teamB: $("teamB").value.trim(),
+  score: $("score").value.trim(),
+  date: $("date").value,
+  time: $("time").value.trim(),
+  detail: $("detail").value.trim(),
+  url: $("url").value.trim()
+ };
+
+ if (item.url) {
+  try {
+   if (new URL(item.url).protocol !== "https:") {
+    throw new Error("Use a secure HTTPS link.");
+   }
+  } catch(error) {
+   $("status").textContent = "Please enter a valid HTTPS link.";
+   return;
+  }
+ }
+
+ if (editingIndex >= 0) {
+  siteData[currentTab][editingIndex] = item;
+ } else {
+  siteData[currentTab].push(item);
+ }
+
+ resetForm();
+ render();
+
+ $("status").textContent =
+  "Entry updated in this dashboard. Generate JSON to publish it.";
+});
+
+function editEntry(index) {
+ const item = siteData[currentTab][index];
+
+ editingIndex = index;
+ $("formTitle").textContent = "Edit Entry";
+ $("saveButton").textContent = "Save Changes";
+
+ $("sport").value = item.sport || "Cricket";
+ $("teamA").value = item.teamA || "";
+ $("teamB").value = item.teamB || "";
+ $("score").value = item.score || "";
+ $("date").value = item.date || "";
+ $("time").value = item.time || "";
+ $("detail").value = item.detail || "";
+ $("url").value = item.url || "";
+
+ $("entryForm").scrollIntoView({behavior:"smooth"});
+}
+
+function deleteEntry(index) {
+ if (!confirm("Delete this entry from the dashboard?")) return;
+
+ siteData[currentTab].splice(index,1);
+ resetForm();
+ render();
+
+ $("status").textContent =
+  "Entry deleted from this dashboard. Generate JSON to publish it.";
+}
+
+function resetForm() {
+ editingIndex = -1;
+ $("entryForm").reset();
+ $("formTitle").textContent = sections[currentTab].form;
+ $("saveButton").textContent =
+  currentTab === "matches" ? "Add Match" :
+  currentTab === "fixtures" ? "Add Fixture" : "Add Result";
+}
+
+function generateJSON() {
+ if (!siteData) {
+  $("status").textContent = "Load website data first.";
+  return;
+ }
+
+ $("output").value = JSON.stringify(siteData,null,2);
+ $("status").textContent =
+  "Updated JSON generated. Copy it and publish through GitHub.";
+}
+
+async function copyJSON() {
+ if (!$("output").value) generateJSON();
+
+ try {
+  await navigator.clipboard.writeText($("output").value);
+  $("status").textContent = "JSON copied. Now paste it into GitHub.";
+ } catch(error) {
+  $("output").select();
+  $("status").textContent =
+   "Select and copy the JSON manually.";
+ }
+}
+
+initialize();
+</script>
 
 </body>
 </html>
