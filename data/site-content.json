@@ -35,7 +35,18 @@
     "Weightlifting",
     "Other Sports"
   ],
-  "matches": [],
+  "matches": [
+    {
+      "sport": "Cricket",
+      "teamA": "India",
+      "teamB": "Australia",
+      "score": "India won",
+      "date": "2026-11-22",
+      "time": "7:00 PM",
+      "detail": "Wankhede stadium",
+      "url": "https://youtube.com/@sports-official007?si=OjTigZzCNdsHtiyg"
+    }
+  ],
   "fixtures": [],
   "results": [],
   "olympics": {
