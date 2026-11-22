@@ -1,0 +1,54 @@
+
+{
+  "site": {
+    "name": "SPORTSOFFICIAL007 LIVE",
+    "tagline": "Every Sport. One Destination.",
+    "youtube": "https://youtube.com/@sports-official007?si=OjTigZzCNdsHtiyg"
+  },
+  "popup": {
+    "enabled": true,
+    "title": "Stay Updated!",
+    "message": "Subscribe us for latest updates and information regarding website or any sport.",
+    "buttonText": "Subscribe on YouTube",
+    "url": "https://youtube.com/@sports-official007?si=OjTigZzCNdsHtiyg"
+  },
+  "sports": [
+    "Cricket",
+    "Football",
+    "Basketball",
+    "Tennis",
+    "Hockey",
+    "Badminton",
+    "Volleyball",
+    "Swimming",
+    "Athletics",
+    "Boxing",
+    "Wrestling",
+    "Cycling",
+    "Table Tennis",
+    "Golf",
+    "Rugby",
+    "Motorsport",
+    "Archery",
+    "Gymnastics",
+    "Baseball",
+    "Squash",
+    "Weightlifting",
+    "Other Sports"
+  ],
+  "matches": [],
+  "fixtures": [],
+  "results": [],
+  "olympics": {
+    "enabled": true,
+    "events": [],
+    "medals": []
+  },
+  "paralympics": {
+    "enabled": true,
+    "events": [],
+    "medals": []
+  },
+  "highlights": [],
+  "announcements": []
+}
