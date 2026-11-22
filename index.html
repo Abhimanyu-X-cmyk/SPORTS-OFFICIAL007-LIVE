@@ -2,84 +2,261 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080d18">
-<meta name="description" content="SPORTSOFFICIAL007 LIVE — Global sports scores, fixtures, results and updates.">
-<title>SPORTSOFFICIAL007 LIVE | Global Sports</title>
-<style>
-:root {
-  --bg:#080d18; --panel:#111b2c; --line:#24334a;
-  --text:#f4f7fc; --muted:#9aabc2; --red:#ff344d;
-  --green:#24d69a; --blue:#328bff;
-}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);
-font-family:Arial, sans-serif}
-header{background:#0d1524;border-bottom:1px solid var(--line);
-padding:15px 5%;display:flex;align-items:center;
-justify-content:space-between;gap:15px;flex-wrap:wrap}
-.brand{font-weight:900;font-size:20px;letter-spacing:.5px}
-.brand span{color:var(--red)}
-nav{display:flex;gap:17px;flex-wrap:wrap}
-a{color:inherit;text-decoration:none}
-nav a{font-size:13px;color:var(--muted)}
-nav a:hover{color:white}
-.hero{padding:55px 5%;background:
-linear-gradient(110deg,#172b49,#101729 60%,#261322)}
-.hero small{color:#ff6577;font-weight:bold;letter-spacing:2px}
-h1{font-size:clamp(32px,6vw,58px);margin:14px 0}
-.hero p{color:#c1cde0;max-width:600px;line-height:1.7}
-.section{padding:28px 5%}
-.section-head{display:flex;align-items:center;
-justify-content:space-between;gap:10px;flex-wrap:wrap}
-h2{font-size:22px}
-.grid{display:grid;grid-template-columns:
-repeat(auto-fit,minmax(145px,1fr));gap:12px}
-.card{background:var(--panel);border:1px solid var(--line);
-border-radius:12px;padding:17px}
-.sport{font-weight:bold;min-height:55px}
-.sport span{font-size:25px;display:block;margin-bottom:10px}
-.match{margin-top:12px}
-.teams{display:flex;justify-content:space-between;
-gap:12px;font-weight:bold;margin:17px 0}
-.muted{color:var(--muted);font-size:13px}
-.live{color:var(--red);font-weight:bold;font-size:12px}
-.pill{display:inline-block;background:#292039;color:#ff8090;
-padding:5px 9px;border-radius:20px;font-size:11px}
-.btn{display:inline-block;border:0;border-radius:7px;
-padding:11px 16px;background:var(--red);color:white;
-font-weight:bold;cursor:pointer}
-.btn:hover{opacity:.85}
-button.secondary{background:#24334a}
-footer{padding:30px 5%;border-top:1px solid var(--line);
-color:var(--muted);font-size:13px;line-height:1.8}
-.popup-bg{position:fixed;inset:0;background:#000b;
-display:flex;align-items:center;justify-content:center;
-padding:20px;z-index:10}
-.popup{background:#121e31;border:1px solid #34435c;
-border-radius:17px;padding:28px;max-width:390px;
-width:100%;text-align:center;position:relative}
-.popup h2{font-size:25px}
-.popup p{color:var(--muted);line-height:1.7}
-.close{position:absolute;right:13px;top:10px;
-background:none;color:white;border:0;font-size:24px;cursor:pointer}
-.hidden{display:none}
-@media(max-width:600px){
- header{align-items:flex-start}
- nav{gap:12px}
- .hero{padding-top:38px;padding-bottom:38px}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080d18">
+  <meta name="description" content="SPORTSOFFICIAL007 LIVE — Global sports scores, fixtures, results and updates.">
+  <title>SPORTSOFFICIAL007 LIVE | Global Sports</title>
+
+  <style>
+    :root {
+      --bg: #080d18;
+      --panel: #111b2c;
+      --line: #24334a;
+      --text: #f4f7fc;
+      --muted: #9aabc2;
+      --red: #ff344d;
+      --green: #24d69a;
+      --blue: #328bff;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, sans-serif;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    header {
+      background: #0d1524;
+      border-bottom: 1px solid var(--line);
+      padding: 15px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      font-weight: 900;
+      font-size: 20px;
+      letter-spacing: .5px;
+    }
+
+    .brand span { color: var(--red); }
+
+    nav {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    nav a:hover { color: white; }
+
+    .hero {
+      padding: 55px 5%;
+      background: linear-gradient(
+        110deg, #172b49, #101729 60%, #261322
+      );
+    }
+
+    .hero small {
+      color: #ff6577;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    h1 {
+      font-size: clamp(32px, 6vw, 58px);
+      margin: 14px 0;
+    }
+
+    .hero p {
+      color: #c1cde0;
+      max-width: 600px;
+      line-height: 1.7;
+    }
+
+    .section { padding: 30px 5%; }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    h2 { font-size: 22px; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+      gap: 12px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 17px;
+      min-width: 0;
+    }
+
+    .sport {
+      font-weight: bold;
+      min-height: 85px;
+    }
+
+    .sport span {
+      font-size: 25px;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .match { margin-top: 12px; }
+
+    .teams {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-weight: bold;
+      margin: 17px 0;
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .live {
+      color: var(--red);
+      font-weight: bold;
+      font-size: 12px;
+    }
+
+    .pill {
+      display: inline-block;
+      background: #292039;
+      color: #ff8090;
+      padding: 5px 9px;
+      border-radius: 20px;
+      font-size: 11px;
+    }
+
+    .btn {
+      display: inline-block;
+      border: 0;
+      border-radius: 7px;
+      padding: 11px 16px;
+      background: var(--red);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn:hover { opacity: .85; }
+
+    .empty {
+      color: var(--muted);
+      text-align: center;
+      padding: 24px 12px;
+      border: 1px dashed #34445c;
+      border-radius: 12px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .item-link {
+      display: inline-block;
+      color: #66b7ff;
+      margin-top: 10px;
+      font-size: 13px;
+    }
+
+    footer {
+      padding: 30px 5%;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    footer a { color: #66b7ff; }
+
+    .popup-bg {
+      position: fixed;
+      inset: 0;
+      background: #000b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 10;
+    }
+
+    .popup {
+      background: #121e31;
+      border: 1px solid #34435c;
+      border-radius: 17px;
+      padding: 28px;
+      max-width: 390px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+    }
+
+    .popup h2 { font-size: 25px; }
+
+    .popup p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .close {
+      position: absolute;
+      right: 13px;
+      top: 10px;
+      background: none;
+      color: white;
+      border: 0;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .hidden { display: none !important; }
+
+    @media(max-width: 600px) {
+      header { align-items: flex-start; }
+      nav { gap: 12px; }
+      .hero { padding-top: 38px; padding-bottom: 38px; }
+    }
+  </style>
 </head>
+
 <body>
 
 <header>
-  <a class="brand" href="#">SPORTS<span>OFFICIAL007</span> LIVE</a>
+  <a class="brand" id="brand" href="#">SPORTS<span>OFFICIAL007</span> LIVE</a>
+
   <nav>
     <a href="#live">Live</a>
     <a href="#sports">Sports</a>
     <a href="#fixtures">Fixtures</a>
+    <a href="#results">Results</a>
     <a href="#olympics">Olympics</a>
     <a href="#highlights">Highlights</a>
   </nav>
@@ -88,8 +265,10 @@ background:none;color:white;border:0;font-size:24px;cursor:pointer}
 <section class="hero">
   <small>THE WORLD OF SPORTS</small>
   <h1>EVERY SPORT.<br>ONE DESTINATION.</h1>
-  <p>Your destination for sports scores, fixtures, results,
-  tournament updates and official viewing links.</p>
+  <p id="tagline">
+    Your destination for sports scores, fixtures, results,
+    tournament updates and official viewing links.
+  </p>
   <a class="btn" href="#live">Explore Matches</a>
 </section>
 
@@ -98,88 +277,64 @@ background:none;color:white;border:0;font-size:24px;cursor:pointer}
     <h2>🔴 Live Matches</h2>
     <span class="pill">SCORE CENTRE</span>
   </div>
-  <div class="grid">
-    <article class="card match">
-      <span class="live">● LIVE</span>
-      <p class="muted">Cricket · Match information</p>
-      <div class="teams"><span>Team A</span><span>Team B</span></div>
-      <p class="muted">Live score feed will appear here when connected.</p>
-    </article>
-    <article class="card match">
-      <span class="pill">UPCOMING</span>
-      <p class="muted">Football · Match information</p>
-      <div class="teams"><span>Team C</span><span>Team D</span></div>
-      <p class="muted">Fixture information will appear here.</p>
-    </article>
-  </div>
+  <div class="grid" id="liveList"></div>
 </section>
 
 <section class="section" id="sports">
   <h2>🏆 Explore All Sports</h2>
-  <div class="grid">
-    <div class="card sport"><span>🏏</span>Cricket</div>
-    <div class="card sport"><span>⚽</span>Football</div>
-    <div class="card sport"><span>🏀</span>Basketball</div>
-    <div class="card sport"><span>🎾</span>Tennis</div>
-    <div class="card sport"><span>🏑</span>Hockey</div>
-    <div class="card sport"><span>🏸</span>Badminton</div>
-    <div class="card sport"><span>🏐</span>Volleyball</div>
-    <div class="card sport"><span>🏊</span>Swimming</div>
-    <div class="card sport"><span>🏃</span>Athletics</div>
-    <div class="card sport"><span>🥊</span>Boxing</div>
-    <div class="card sport"><span>🤼</span>Wrestling</div>
-    <div class="card sport"><span>🚴</span>Cycling</div>
-    <div class="card sport"><span>🏓</span>Table Tennis</div>
-    <div class="card sport"><span>⛳</span>Golf</div>
-    <div class="card sport"><span>🏉</span>Rugby</div>
-    <div class="card sport"><span>🏎️</span>Motorsport</div>
-    <div class="card sport"><span>🏹</span>Archery</div>
-    <div class="card sport"><span>🤸</span>Gymnastics</div>
-    <div class="card sport"><span>⚾</span>Baseball</div>
-    <div class="card sport"><span>🥋</span>Martial Arts</div>
-  </div>
+  <div class="grid" id="sportsGrid"></div>
 </section>
 
 <section class="section" id="fixtures">
-  <h2>📅 Fixtures & Results</h2>
-  <div class="card">
-    <p>Upcoming fixtures and completed match results will be
-    published here.</p>
-    <p class="muted">Connect the sports data service to display verified schedules and results.</p>
-  </div>
+  <h2>📅 Upcoming Fixtures</h2>
+  <div class="grid" id="fixturesList"></div>
+</section>
+
+<section class="section" id="results">
+  <h2>🏁 Match Results</h2>
+  <div class="grid" id="resultsList"></div>
 </section>
 
 <section class="section" id="olympics">
   <h2>🏅 Olympics & Paralympics</h2>
+
   <div class="grid">
     <div class="card">
       <h3>Olympic Games</h3>
       <p class="muted">Events, schedules, results and medal table.</p>
+      <div id="olympicEvents"></div>
     </div>
+
     <div class="card">
       <h3>Paralympic Games</h3>
       <p class="muted">Events, schedules, results and country standings.</p>
-    </div>
-    <div class="card">
-      <h3>Medal Table</h3>
-      <p class="muted">Country-wise gold, silver and bronze counts.</p>
+      <div id="paralympicEvents"></div>
     </div>
   </div>
+
+  <h2>🥇 Olympic Medal Table</h2>
+  <div id="olympicMedals"></div>
+
+  <h2>🥇 Paralympic Medal Table</h2>
+  <div id="paralympicMedals"></div>
 </section>
 
 <section class="section" id="highlights">
   <h2>🎬 Sports Highlights</h2>
-  <div class="card">
-    <p>Latest sports highlights and official video sources.</p>
-    <p class="muted">Only authorized video sources will be featured.</p>
-  </div>
+  <div class="grid" id="highlightsList"></div>
+</section>
+
+<section class="section" id="announcements">
+  <h2>📢 Announcements</h2>
+  <div class="grid" id="announcementsList"></div>
 </section>
 
 <footer>
-  <strong>SPORTSOFFICIAL007 LIVE</strong><br>
+  <strong id="footerBrand">SPORTSOFFICIAL007 LIVE</strong><br>
   Your global destination for sports updates.<br>
   Scores and schedules will be shown from verified data sources
-  once connected.<br>
+  once connected.<br><br>
+  <a href="admin.html">Admin Centre</a><br>
   © 2026 SPORTSOFFICIAL007 LIVE. All rights reserved.
 </footer>
 
@@ -187,10 +342,13 @@ background:none;color:white;border:0;font-size:24px;cursor:pointer}
   <div class="popup">
     <button class="close" onclick="closePopup()" aria-label="Close">×</button>
     <div style="font-size:35px">🔔</div>
-    <h2>Stay Updated!</h2>
-    <p>Subscribe us for latest updates and information regarding website or any sport.</p>
-    <a class="btn" target="_blank" rel="noopener"
-      href="https://youtube.com/@sports-official007?si=OjTigZzCNdsHtiyg">
+    <h2 id="popupTitle">Stay Updated!</h2>
+    <p id="popupMessage">
+      Subscribe us for latest updates and information regarding website or any sport.
+    </p>
+    <a class="btn" id="popupButton"
+       target="_blank" rel="noopener"
+       href="https://youtube.com/@sports-official007?si=OjTigZzCNdsHtiyg">
       ▶ Subscribe on YouTube
     </a>
     <p class="muted">Stay connected with SPORTSOFFICIAL007.</p>
@@ -198,19 +356,314 @@ background:none;color:white;border:0;font-size:24px;cursor:pointer}
 </div>
 
 <script>
-function closePopup(){
-  document.getElementById("subscribePopup").classList.add("hidden");
-  try {
-    sessionStorage.setItem("sportsPopupClosed","yes");
-  } catch(e) {}
+const CONTENT_URL = "./data/site-content.json";
+
+const sportIcons = {
+  "Cricket": "🏏",
+  "Football": "⚽",
+  "Basketball": "🏀",
+  "Tennis": "🎾",
+  "Hockey": "🏑",
+  "Badminton": "🏸",
+  "Volleyball": "🏐",
+  "Swimming": "🏊",
+  "Athletics": "🏃",
+  "Boxing": "🥊",
+  "Wrestling": "🤼",
+  "Cycling": "🚴",
+  "Table Tennis": "🏓",
+  "Golf": "⛳",
+  "Rugby": "🏉",
+  "Motorsport": "🏎️",
+  "Archery": "🏹",
+  "Gymnastics": "🤸",
+  "Baseball": "⚾",
+  "Squash": "🎾",
+  "Weightlifting": "🏋️",
+  "Other Sports": "🏆",
+  "Martial Arts": "🥋"
+};
+
+function makeElement(tag, className, text) {
+  const element = document.createElement(tag);
+
+  if (className) element.className = className;
+  if (text !== undefined) element.textContent = text;
+
+  return element;
 }
-try {
-  if (!sessionStorage.getItem("sportsPopupClosed")) {
-    setTimeout(() => {
-      document.getElementById("subscribePopup").classList.remove("hidden");
-    }, 1200);
+
+function showEmpty(containerId, message) {
+  const container = document.getElementById(containerId);
+  container.replaceChildren(
+    makeElement("div", "empty", message)
+  );
+}
+
+function renderCards(containerId, items, type) {
+  const container = document.getElementById(containerId);
+  container.replaceChildren();
+
+  if (!Array.isArray(items) || items.length === 0) {
+    showEmpty(containerId, "No information has been published yet. Check back soon.");
+    return;
   }
-} catch(e) {}
+
+  items.forEach(item => {
+    const card = makeElement("article", "card match");
+
+    if (type === "live") {
+      card.appendChild(makeElement("span", "live", "● LIVE"));
+    } else if (type === "fixture") {
+      card.appendChild(makeElement("span", "pill", "UPCOMING"));
+    } else if (type === "result") {
+      card.appendChild(makeElement("span", "pill", "COMPLETED"));
+    }
+
+    card.appendChild(
+      makeElement("p", "muted", item.sport || item.category || "Sports")
+    );
+
+    const title = item.title ||
+      [item.teamA, item.teamB].filter(Boolean).join(" vs ") ||
+      item.event || "Sports update";
+
+    card.appendChild(makeElement("h3", "", title));
+
+    if (item.score) {
+      card.appendChild(makeElement("p", "muted", "Score: " + item.score));
+    }
+
+    if (item.date || item.time) {
+      card.appendChild(
+        makeElement("p", "muted", [item.date, item.time].filter(Boolean).join(" · "))
+      );
+    }
+
+    if (item.detail || item.description) {
+      card.appendChild(
+        makeElement("p", "muted", item.detail || item.description)
+      );
+    }
+
+    addSafeLink(card, item.url, item.linkText || "View details");
+    container.appendChild(card);
+  });
+}
+
+function renderSports(sports) {
+  const container = document.getElementById("sportsGrid");
+  container.replaceChildren();
+
+  if (!Array.isArray(sports) || sports.length === 0) {
+    showEmpty("sportsGrid", "Sports categories will appear here.");
+    return;
+  }
+
+  sports.forEach(sport => {
+    const card = makeElement("div", "card sport");
+    const icon = makeElement("span", "", sportIcons[sport] || "🏆");
+
+    card.appendChild(icon);
+    card.appendChild(document.createTextNode(sport));
+    container.appendChild(card);
+  });
+}
+
+function addSafeLink(container, url, label) {
+  if (!url) return;
+
+  try {
+    const parsed = new URL(url);
+
+    if (parsed.protocol !== "https:" && parsed.protocol !== "http:") {
+      return;
+    }
+
+    const link = makeElement("a", "item-link", label);
+    link.href = parsed.href;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    container.appendChild(link);
+  } catch (error) {
+    // Ignore invalid links.
+  }
+}
+
+function renderEvents(containerId, events) {
+  const container = document.getElementById(containerId);
+  container.replaceChildren();
+
+  if (!Array.isArray(events) || events.length === 0) {
+    showEmpty(containerId, "Event information will appear here when published.");
+    return;
+  }
+
+  events.forEach(event => {
+    const card = makeElement("div", "card match");
+    card.appendChild(makeElement("h3", "", event.title || event.name || "Event"));
+    card.appendChild(makeElement("p", "muted",
+      [event.date, event.sport, event.location].filter(Boolean).join(" · ")
+    ));
+    addSafeLink(card, event.url, "View event");
+    container.appendChild(card);
+  });
+}
+
+function renderMedals(containerId, medals) {
+  const container = document.getElementById(containerId);
+  container.replaceChildren();
+
+  if (!Array.isArray(medals) || medals.length === 0) {
+    showEmpty(containerId, "Medal table information will appear here when published.");
+    return;
+  }
+
+  const table = document.createElement("table");
+  table.style.width = "100%";
+  table.style.borderCollapse = "collapse";
+
+  const headerRow = document.createElement("tr");
+
+  ["Country", "🥇 Gold", "🥈 Silver", "🥉 Bronze"].forEach(label => {
+    const th = makeElement("th", "", label);
+    th.style.padding = "10px 5px";
+    th.style.textAlign = "left";
+    th.style.borderBottom = "1px solid #34445c";
+    headerRow.appendChild(th);
+  });
+
+  table.appendChild(headerRow);
+
+  medals.forEach(item => {
+    const row = document.createElement("tr");
+
+    [
+      item.country || item.name || "-",
+      item.gold ?? 0,
+      item.silver ?? 0,
+      item.bronze ?? 0
+    ].forEach(value => {
+      const cell = makeElement("td", "", String(value));
+      cell.style.padding = "10px 5px";
+      cell.style.borderBottom = "1px solid #24334a";
+      row.appendChild(cell);
+    });
+
+    table.appendChild(row);
+  });
+
+  container.appendChild(table);
+}
+
+function configurePopup(popupData, siteData) {
+  const popup = popupData || {};
+  const box = document.getElementById("subscribePopup");
+
+  if (popup.enabled === false) {
+    box.classList.add("hidden");
+    return;
+  }
+
+  document.getElementById("popupTitle").textContent =
+    popup.title || "Stay Updated!";
+
+  document.getElementById("popupMessage").textContent =
+    popup.message ||
+    "Subscribe us for latest updates and information regarding website or any sport.";
+
+  const button = document.getElementById("popupButton");
+
+  button.textContent = "▶ " + (popup.buttonText || "Subscribe on YouTube");
+  button.href = popup.url || siteData.youtube ||
+    "https://youtube.com/@sports-official007?si=OjTigZzCNdsHtiyg";
+
+  box.classList.add("hidden");
+
+  try {
+    if (!sessionStorage.getItem("sportsPopupClosed")) {
+      setTimeout(() => box.classList.remove("hidden"), 1200);
+    }
+  } catch (error) {
+    setTimeout(() => box.classList.remove("hidden"), 1200);
+  }
+}
+
+function closePopup() {
+  document.getElementById("subscribePopup").classList.add("hidden");
+
+  try {
+    sessionStorage.setItem("sportsPopupClosed", "yes");
+  } catch (error) {}
+}
+
+async function loadSiteContent() {
+  try {
+    const response = await fetch(CONTENT_URL, {
+      cache: "no-store"
+    });
+
+    if (!response.ok) {
+      throw new Error("Could not load site-content.json");
+    }
+
+    const data = await response.json();
+    const site = data.site || {};
+
+    if (site.name) {
+      document.title = site.name + " | Global Sports";
+      document.getElementById("brand").textContent = site.name;
+      document.getElementById("footerBrand").textContent = site.name;
+    }
+
+    if (site.tagline) {
+      document.getElementById("tagline").textContent = site.tagline;
+    }
+
+    renderSports(data.sports || []);
+
+    renderCards("liveList", data.matches || [], "live");
+    renderCards("fixturesList", data.fixtures || [], "fixture");
+    renderCards("resultsList", data.results || [], "result");
+
+    const olympics = data.olympics || {};
+    const paralympics = data.paralympics || {};
+
+    renderEvents("olympicEvents", olympics.events || []);
+    renderEvents("paralympicEvents", paralympics.events || []);
+
+    renderMedals("olympicMedals", olympics.medals || []);
+    renderMedals("paralympicMedals", paralympics.medals || []);
+
+    renderCards("highlightsList", data.highlights || [], "highlight");
+    renderCards("announcementsList", data.announcements || [], "announcement");
+
+    configurePopup(data.popup, site);
+
+    console.log("SPORTSOFFICIAL007 LIVE content loaded.");
+
+  } catch (error) {
+    console.error("Content loading error:", error);
+
+    [
+      "liveList",
+      "sportsGrid",
+      "fixturesList",
+      "resultsList",
+      "olympicEvents",
+      "paralympicEvents",
+      "olympicMedals",
+      "paralympicMedals",
+      "highlightsList",
+      "announcementsList"
+    ].forEach(id => {
+      showEmpty(id, "Website content is temporarily unavailable. Please try again later.");
+    });
+  }
+}
+
+loadSiteContent();
 </script>
+
 </body>
 </html>
