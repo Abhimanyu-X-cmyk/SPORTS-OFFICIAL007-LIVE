@@ -6,62 +6,37 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#080d18">
 <title>SPORTSOFFICIAL007 LIVE | Admin</title>
-
 <style>
 *{box-sizing:border-box}
-body{
- margin:0;background:#080d18;color:#f4f7fc;
- font-family:Arial,sans-serif;padding:18px
-}
-header{max-width:950px;margin:15px auto 25px}
+body{margin:0;background:#080d18;color:#f4f7fc;font-family:Arial,sans-serif;padding:18px}
+header,main{max-width:950px;margin:15px auto}
 .brand{color:#00d9ff;font-size:12px;font-weight:bold;letter-spacing:2px}
 h1{font-size:27px;margin:12px 0}
 p{color:#9aabc2;line-height:1.5;font-size:14px}
-nav{display:flex;gap:9px;flex-wrap:wrap;margin:20px 0}
-button,a.btn{
- border:0;border-radius:8px;padding:12px 15px;
- background:#00c9ee;color:#06101c;font-weight:bold;
- cursor:pointer;text-decoration:none;font-size:13px
-}
+nav,.actions{display:flex;gap:9px;flex-wrap:wrap;margin:16px 0}
+button,a.btn{border:0;border-radius:8px;padding:12px 15px;background:#00c9ee;color:#06101c;font-weight:bold;cursor:pointer;text-decoration:none;font-size:13px}
 button.secondary{background:#24354d;color:white}
 button.danger{background:#52212d;color:#ffb6c0}
 button.active{background:#00c9ee;color:#06101c}
-main{max-width:950px;margin:auto}
-.panel{
- background:#111b2c;border:1px solid #293b54;
- padding:18px;border-radius:13px;margin-bottom:16px
-}
+.panel{background:#111b2c;border:1px solid #293b54;padding:18px;border-radius:13px;margin-bottom:16px}
 label{display:block;font-size:13px;color:#c3cee0;margin:12px 0 6px}
-input,select,textarea{
- width:100%;padding:12px;border-radius:8px;
- border:1px solid #344761;background:#080f1c;
- color:white;font-size:14px
-}
-textarea{min-height:220px;resize:vertical;font-family:monospace}
+input,select{width:100%;padding:12px;border-radius:8px;border:1px solid #344761;background:#080f1c;color:white;font-size:14px}
 .formgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.entry{
- border:1px solid #34445c;border-radius:10px;
- padding:14px;margin-top:12px;background:#0b1422
-}
+.entry{border:1px solid #34445c;border-radius:10px;padding:14px;margin-top:12px;background:#0b1422}
 .entry h3{margin:0 0 8px}
-.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
 .small{font-size:12px;color:#9aabc2}
-.hidden{display:none}
 .status{color:#48e2ac;font-size:13px}
+.error{color:#ff9da8}
 footer{text-align:center;color:#8291a8;padding:25px;font-size:12px}
-@media(max-width:520px){
- .formgrid{grid-template-columns:1fr}
- h1{font-size:23px}
-}
+@media(max-width:520px){.formgrid{grid-template-columns:1fr}h1{font-size:23px}}
 </style>
 </head>
-
 <body>
 
 <header>
  <div class="brand">SPORTSOFFICIAL007 LIVE</div>
  <h1>Admin Control Centre</h1>
- <p>Manage your sports website content from one dashboard.</p>
+ <p>Manage and publish sports website content.</p>
  <nav>
   <button class="active" data-tab="matches">Live Matches</button>
   <button class="secondary" data-tab="fixtures">Fixtures</button>
@@ -70,111 +45,66 @@ footer{text-align:center;color:#8291a8;padding:25px;font-size:12px}
 </header>
 
 <main>
-
  <section class="panel">
   <h2 id="sectionTitle">🔴 Live Match Manager</h2>
-  <p id="sectionDescription">Add and update match information.</p>
-
+  <p id="sectionDescription">Manage live match information and scores.</p>
   <div id="entries"></div>
  </section>
 
  <section class="panel">
   <h2 id="formTitle">Add New Match</h2>
-
   <form id="entryForm">
    <div class="formgrid">
     <div>
      <label for="sport">Sport</label>
      <select id="sport" required>
-      <option>Cricket</option>
-      <option>Football</option>
-      <option>Basketball</option>
-      <option>Tennis</option>
-      <option>Hockey</option>
-      <option>Badminton</option>
-      <option>Volleyball</option>
-      <option>Swimming</option>
-      <option>Athletics</option>
-      <option>Boxing</option>
-      <option>Wrestling</option>
-      <option>Other Sports</option>
+      <option>Cricket</option><option>Football</option>
+      <option>Basketball</option><option>Tennis</option>
+      <option>Hockey</option><option>Badminton</option>
+      <option>Volleyball</option><option>Swimming</option>
+      <option>Athletics</option><option>Boxing</option>
+      <option>Wrestling</option><option>Other Sports</option>
      </select>
     </div>
-
-    <div>
-     <label for="date">Date</label>
-     <input id="date" type="date">
-    </div>
-
-    <div>
-     <label for="teamA">Team / Player 1</label>
-     <input id="teamA" required placeholder="India">
-    </div>
-
-    <div>
-     <label for="teamB">Team / Player 2</label>
-     <input id="teamB" required placeholder="Australia">
-    </div>
-
-    <div>
-     <label for="score">Score / Result</label>
-     <input id="score" placeholder="Enter verified score">
-    </div>
-
-    <div>
-     <label for="time">Match Time</label>
-     <input id="time" placeholder="7:00 PM">
-    </div>
+    <div><label for="date">Date</label><input id="date" type="date"></div>
+    <div><label for="teamA">Team / Player 1</label><input id="teamA" required placeholder="India"></div>
+    <div><label for="teamB">Team / Player 2</label><input id="teamB" required placeholder="Australia"></div>
+    <div><label for="score">Score / Result</label><input id="score" placeholder="Enter verified score"></div>
+    <div><label for="time">Match Time</label><input id="time" placeholder="7:00 PM"></div>
    </div>
-
    <label for="detail">Additional Information</label>
    <input id="detail" placeholder="Venue or match status">
-
-   <label for="url">Official Information Link (optional)</label>
+   <label for="url">Official Information / Video Link</label>
    <input id="url" type="url" placeholder="https://example.com">
-
    <div class="actions">
     <button type="submit" id="saveButton">Add Match</button>
-    <button type="button" class="secondary" onclick="resetForm()">Cancel</button>
+    <button type="button" class="secondary" id="cancelButton">Cancel</button>
    </div>
   </form>
  </section>
 
  <section class="panel">
-  <h2>📦 Publish Website Data</h2>
-  <p>Generate your updated central content file after editing.</p>
-
-  <button onclick="generateJSON()">Generate Updated JSON</button>
-
-  <label for="output">Updated site-content.json</label>
-  <textarea id="output" placeholder="Your updated JSON will appear here..." spellcheck="false"></textarea>
-
-  <div class="actions">
-   <button onclick="copyJSON()">Copy JSON</button>
-   <a class="btn" href="https://github.com/abhimanyu-x-cmyk/SPORTS-OFFICIAL007-LIVE/edit/main/data/site-content.json" target="_blank" rel="noopener">Open GitHub Editor</a>
-  </div>
-
-  <p class="small">
-   Copy the generated JSON, replace the contents of site-content.json
-   in GitHub, and commit the change to publish it.
-  </p>
-  <p id="status" class="status" aria-live="polite"></p>
+  <h2>🚀 Publish Website Data</h2>
+  <p>Publish your dashboard changes to the central website data file.</p>
+  <button id="publishButton">Publish to Website</button>
+  <p id="status" class="status" aria-live="polite">Loading website data...</p>
+  <p class="small">Your admin password is requested when you publish. It is not saved in this page.</p>
  </section>
 
  <section class="panel">
   <h2>🌐 Website Links</h2>
   <div class="actions">
    <a class="btn" href="./" target="_blank">View Website</a>
-   <a class="btn" href="https://github.com/abhimanyu-x-cmyk/SPORTS-OFFICIAL007-LIVE" target="_blank" rel="noopener">Open Repository</a>
+   <a class="btn" href="https://github.com/Abhimanyu-X-cmyk/SPORTS-OFFICIAL007-LIVE" target="_blank" rel="noopener">Open Repository</a>
   </div>
  </section>
-
 </main>
 
-<footer>SPORTSOFFICIAL007 LIVE · Admin Centre V2.0</footer>
+<footer>SPORTSOFFICIAL007 LIVE · Admin Control Centre</footer>
 
 <script>
 const DATA_URL = "./data/site-content.json";
+const PUBLISH_URL = "/api/publish";
 
 let siteData = null;
 let currentTab = "matches";
@@ -200,6 +130,11 @@ const sections = {
 
 const $ = id => document.getElementById(id);
 
+function setStatus(message, isError = false) {
+ $("status").textContent = message;
+ $("status").className = isError ? "status error" : "status";
+}
+
 async function initialize() {
  try {
   const response = await fetch(DATA_URL, {cache:"no-store"});
@@ -212,11 +147,9 @@ async function initialize() {
   });
 
   render();
-  $("status").textContent = "Website data loaded successfully.";
-
+  setStatus("Website data loaded successfully.");
  } catch(error) {
-  $("status").textContent =
-   "Could not load website data. Check the public JSON file.";
+  setStatus("Could not load website data. Please check the deployment.", true);
  }
 }
 
@@ -225,17 +158,11 @@ function switchTab(tab) {
  editingIndex = -1;
 
  document.querySelectorAll("nav button").forEach(button => {
-  const active = button.dataset.tab === tab;
-  button.className = active ? "active" : "secondary";
+  button.className = button.dataset.tab === tab ? "active" : "secondary";
  });
 
  $("sectionTitle").textContent = sections[tab].title;
  $("sectionDescription").textContent = sections[tab].description;
- $("formTitle").textContent = sections[tab].form;
- $("saveButton").textContent =
-  tab === "matches" ? "Add Match" :
-  tab === "fixtures" ? "Add Fixture" : "Add Result";
-
  resetForm();
  render();
 }
@@ -298,7 +225,7 @@ $("entryForm").addEventListener("submit", event => {
  event.preventDefault();
 
  if (!siteData) {
-  $("status").textContent = "Website data has not loaded.";
+  setStatus("Website data has not loaded.", true);
   return;
  }
 
@@ -316,10 +243,10 @@ $("entryForm").addEventListener("submit", event => {
  if (item.url) {
   try {
    if (new URL(item.url).protocol !== "https:") {
-    throw new Error("Use a secure HTTPS link.");
+    throw new Error("Use HTTPS");
    }
   } catch(error) {
-   $("status").textContent = "Please enter a valid HTTPS link.";
+   setStatus("Please enter a valid HTTPS link.", true);
    return;
   }
  }
@@ -332,18 +259,15 @@ $("entryForm").addEventListener("submit", event => {
 
  resetForm();
  render();
-
- $("status").textContent =
-  "Entry updated in this dashboard. Generate JSON to publish it.";
+ setStatus("Dashboard updated. Tap Publish to Website to save it publicly.");
 });
 
 function editEntry(index) {
  const item = siteData[currentTab][index];
-
  editingIndex = index;
+
  $("formTitle").textContent = "Edit Entry";
  $("saveButton").textContent = "Save Changes";
-
  $("sport").value = item.sport || "Cricket";
  $("teamA").value = item.teamA || "";
  $("teamB").value = item.teamB || "";
@@ -362,9 +286,7 @@ function deleteEntry(index) {
  siteData[currentTab].splice(index,1);
  resetForm();
  render();
-
- $("status").textContent =
-  "Entry deleted from this dashboard. Generate JSON to publish it.";
+ setStatus("Entry deleted from dashboard. Publish to save the change.");
 }
 
 function resetForm() {
@@ -376,32 +298,52 @@ function resetForm() {
   currentTab === "fixtures" ? "Add Fixture" : "Add Result";
 }
 
-function generateJSON() {
+$("cancelButton").addEventListener("click", resetForm);
+
+$("publishButton").addEventListener("click", async () => {
  if (!siteData) {
-  $("status").textContent = "Load website data first.";
+  setStatus("Website data has not loaded.", true);
   return;
  }
 
- $("output").value = JSON.stringify(siteData,null,2);
- $("status").textContent =
-  "Updated JSON generated. Copy it and publish through GitHub.";
-}
+ const password = prompt("Enter your Admin Password to publish:");
+ if (password === null) return;
+ if (!password.trim()) {
+  setStatus("Password cannot be empty.", true);
+  return;
+ }
 
-async function copyJSON() {
- if (!$("output").value) generateJSON();
+ const button = $("publishButton");
+ button.disabled = true;
+ button.textContent = "Publishing...";
+ setStatus("Sending your updates securely...");
 
  try {
-  await navigator.clipboard.writeText($("output").value);
-  $("status").textContent = "JSON copied. Now paste it into GitHub.";
+  const response = await fetch(PUBLISH_URL, {
+   method: "POST",
+   headers: {"Content-Type":"application/json"},
+   body: JSON.stringify({
+    adminPassword: password,
+    siteData: siteData
+   })
+  });
+
+  const result = await response.json();
+
+  if (!response.ok || !result.success) {
+   throw new Error(result.error || "Publishing failed.");
+  }
+
+  setStatus("✅ Published to GitHub successfully! Website deployment may take a short time to update.");
  } catch(error) {
-  $("output").select();
-  $("status").textContent =
-   "Select and copy the JSON manually.";
+  setStatus("Publishing failed: " + error.message, true);
+ } finally {
+  button.disabled = false;
+  button.textContent = "Publish to Website";
  }
-}
+});
 
 initialize();
 </script>
-
 </body>
 </html>
