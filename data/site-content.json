@@ -38,16 +38,6 @@
   "matches": [
     {
       "sport": "Cricket",
-      "teamA": "India",
-      "teamB": "Australia",
-      "score": "119-5",
-      "date": "2026-11-24",
-      "time": "9:AM",
-      "detail": "Wankhede stadium",
-      "url": "https://sports-official007-live-o6rc9jbtq-vantara-education.vercel.app/"
-    },
-    {
-      "sport": "Cricket",
       "teamA": "SOUTH AFRICA",
       "teamB": "BANGLADESH",
       "score": "100-9",
