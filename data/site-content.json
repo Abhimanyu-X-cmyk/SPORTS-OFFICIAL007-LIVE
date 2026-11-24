@@ -45,6 +45,16 @@
       "time": "7:00 pm",
       "detail": "Wankhede stadium",
       "url": "https://sports-official007-live.vercel.app/admin.html⁠"
+    },
+    {
+      "sport": "Cricket",
+      "teamA": "India",
+      "teamB": "Australia",
+      "score": "99-5",
+      "date": "2026-11-24",
+      "time": "11:00 pm",
+      "detail": "Arun Jaitley Stadium",
+      "url": "https://sports-official007-live.vercel.app/admin.html⁠"
     }
   ],
   "fixtures": [],
