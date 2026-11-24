@@ -45,6 +45,16 @@
       "time": "9:AM",
       "detail": "Wankhede stadium",
       "url": "https://sports-official007-live-o6rc9jbtq-vantara-education.vercel.app/"
+    },
+    {
+      "sport": "Cricket",
+      "teamA": "SOUTH AFRICA",
+      "teamB": "BANGLADESH",
+      "score": "100-9",
+      "date": "2026-11-24",
+      "time": "9:00 pm",
+      "detail": "SuperSport Park Cricket Stadium",
+      "url": "https://cricking.pages.dev/?id=willow-2"
     }
   ],
   "fixtures": [],
