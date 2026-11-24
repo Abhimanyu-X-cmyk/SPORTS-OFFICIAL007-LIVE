@@ -40,11 +40,11 @@
       "sport": "Cricket",
       "teamA": "India",
       "teamB": "Australia",
-      "score": "India won",
-      "date": "2026-11-22",
-      "time": "7:00 PM",
+      "score": "11-4",
+      "date": "2026-11-24",
+      "time": "7:00 pm",
       "detail": "Wankhede stadium",
-      "url": "https://youtube.com/@sports-official007?si=OjTigZzCNdsHtiyg"
+      "url": "https://sports-official007-live.vercel.app/admin.html⁠"
     }
   ],
   "fixtures": [],
