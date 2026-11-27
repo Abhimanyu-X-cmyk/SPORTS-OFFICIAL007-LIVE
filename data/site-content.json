@@ -35,28 +35,7 @@
     "Weightlifting",
     "Other Sports"
   ],
-  "matches": [
-    {
-      "sport": "Cricket",
-      "teamA": "SOUTH AFRICA",
-      "teamB": "BANGLADESH",
-      "score": "100-9",
-      "date": "2026-11-24",
-      "time": "9:00 pm",
-      "detail": "SuperSport Park Cricket Stadium",
-      "url": "https://cricking.pages.dev/?id=willow-2"
-    },
-    {
-      "sport": "Cricket",
-      "teamA": "INDIA",
-      "teamB": "NEW ZEALAND",
-      "score": "DAY 1",
-      "date": "2026-11-27",
-      "time": "3'AM",
-      "detail": "Hagley Oval, Christchurch",
-      "url": "https://cricking.pages.dev/?id=hindi"
-    }
-  ],
+  "matches": [],
   "fixtures": [],
   "results": [],
   "olympics": {
