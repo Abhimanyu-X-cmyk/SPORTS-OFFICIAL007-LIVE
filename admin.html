@@ -3,661 +3,453 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#080d18">
-<title>SPORTSOFFICIAL007 LIVE | Owner Admin</title>
-
+<title>SPORTSOFFICIAL007 LIVE | Admin Control Centre</title>
 <style>
-*{box-sizing:border-box}
 :root{
- --bg:#080d18;
- --panel:#111b2c;
- --panel2:#0b1422;
- --border:#293b54;
- --text:#f4f7fc;
- --muted:#9aabc2;
- --cyan:#00d9ff;
- --green:#48e2ac;
- --red:#ff7788;
+  --bg:#080d18;--panel:#101a2b;--panel2:#142238;
+  --line:#24344c;--text:#edf4ff;--muted:#91a4bd;
+  --blue:#2585ff;--cyan:#00d9ff;--red:#ff5364;--green:#28ce91;
 }
-body{
- margin:0;background:var(--bg);color:var(--text);
- font-family:Arial,sans-serif;
-}
-button,a{font-family:inherit}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
 .layout{display:flex;min-height:100vh}
-.sidebar{
- width:245px;background:#0b1422;
- border-right:1px solid var(--border);
- padding:22px 14px;flex-shrink:0;
-}
-.brand{
- color:var(--cyan);font-weight:bold;
- font-size:12px;letter-spacing:2px;
- line-height:1.6;margin:5px 9px;
-}
-.owner{
- color:var(--muted);font-size:12px;
- margin:5px 9px 24px;
-}
-.nav-label{
- color:#71839d;font-size:10px;
- letter-spacing:1.5px;font-weight:bold;
- margin:20px 10px 8px;
-}
-.nav button{
- display:flex;align-items:center;gap:10px;
- width:100%;padding:12px 11px;
- border:0;border-radius:8px;
- background:transparent;color:#bdc9d9;
- text-align:left;font-size:13px;
- cursor:pointer;margin:3px 0;
-}
-.nav button:hover,.nav button.active{
- background:#163047;color:var(--cyan);
-}
+.sidebar{width:245px;background:#0b1423;border-right:1px solid var(--line);padding:20px 13px;flex-shrink:0}
+.brand{padding:10px 9px 22px;border-bottom:1px solid var(--line);margin-bottom:15px}
+.brand strong{font-size:19px;letter-spacing:.5px}
+.brand span{display:block;color:var(--cyan);font-size:11px;margin-top:7px}
+.nav-label{font-size:10px;color:var(--muted);letter-spacing:1.5px;padding:15px 10px 7px}
+.nav button{display:block;width:100%;border:0;background:transparent;color:#aebdd1;text-align:left;padding:11px 12px;border-radius:8px;margin:3px 0;font-size:13px}
+.nav button:hover,.nav button.active{background:#172b46;color:white}
+.nav button.active{border-left:3px solid var(--cyan)}
 .main{flex:1;min-width:0;padding:25px}
-.topbar{
- display:flex;justify-content:space-between;
- align-items:center;gap:12px;flex-wrap:wrap;
- max-width:1150px;margin:auto auto 25px;
-}
-h1{font-size:25px;margin:0 0 7px}
-h2{font-size:19px;margin:0 0 10px}
-p{color:var(--muted);font-size:13px;line-height:1.6}
-.small{font-size:12px;color:var(--muted)}
-.content{max-width:1150px;margin:auto}
-.panel{
- background:var(--panel);border:1px solid var(--border);
- padding:19px;border-radius:13px;margin-bottom:16px;
-}
-.grid{
- display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
- gap:13px;margin-bottom:17px;
-}
-.stat{
- background:var(--panel);border:1px solid var(--border);
- border-radius:12px;padding:17px;
-}
-.stat .number{font-size:27px;font-weight:bold;margin:12px 0 5px}
-.stat .label{font-size:12px;color:var(--muted)}
-.stat .symbol{font-size:20px}
-button.primary,.btn{
- background:var(--cyan);color:#06101c;
- border:0;border-radius:8px;padding:11px 15px;
- font-weight:bold;font-size:13px;cursor:pointer;
- text-decoration:none;display:inline-block;
-}
-button.secondary{
- background:#26384f;color:white;
- border:0;border-radius:8px;padding:11px 15px;
- cursor:pointer;font-weight:bold;
-}
-button.danger{
- background:#52212d;color:#ffb6c0;
- border:0;border-radius:8px;padding:11px 15px;
- cursor:pointer;font-weight:bold;
-}
-button:disabled{opacity:.5;cursor:not-allowed}
-.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:13px}
-textarea,input{
- width:100%;background:#080f1c;color:white;
- border:1px solid #344761;border-radius:8px;
- padding:12px;font-size:13px;outline:none;
-}
-textarea:focus,input:focus{border-color:var(--cyan)}
-textarea{
- min-height:310px;resize:vertical;
- font-family:monospace;line-height:1.6;
-}
-label{
- display:block;color:#c3cee0;
- font-size:13px;margin:13px 0 7px;
-}
-.toolbar{
- display:flex;justify-content:space-between;
- gap:12px;align-items:center;flex-wrap:wrap;
- margin-bottom:14px;
-}
-.status{font-size:13px;color:var(--green)}
-.error{color:var(--red)}
-.hidden{display:none!important}
-.module-list{
- display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
- gap:10px;
-}
-.module-card{
- background:var(--panel2);border:1px solid var(--border);
- padding:14px;border-radius:10px;
-}
-.module-card strong{font-size:13px}
-.module-card p{font-size:11px;margin:7px 0 0}
-.notice{
- background:#182b40;border-left:3px solid var(--cyan);
- padding:12px;border-radius:5px;
- color:#c6d5e8;font-size:12px;line-height:1.6;
-}
-footer{text-align:center;color:#71839d;font-size:11px;padding:25px}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:25px;flex-wrap:wrap}
+.topbar h1{font-size:23px;margin:0}
+.topbar p{color:var(--muted);font-size:12px;margin:6px 0 0}
+.actions{display:flex;gap:9px;flex-wrap:wrap}
+.btn{border:1px solid var(--line);background:var(--panel2);color:white;padding:10px 14px;border-radius:8px;font-size:12px}
+.btn.primary{background:var(--blue);border-color:var(--blue)}
+.btn.success{background:#087e5c;border-color:#087e5c}
+.btn.danger{background:#652532;border-color:#652532}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.page{display:none}
+.page.active{display:block}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:13px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:17px;margin-bottom:14px}
+.metric{font-size:27px;font-weight:bold;margin:10px 0}
+.muted{color:var(--muted);font-size:12px}
+.module-card{cursor:pointer;transition:.15s}
+.module-card:hover{border-color:var(--blue);transform:translateY(-2px)}
+.module-card strong{display:block;margin-bottom:8px}
+h2{font-size:18px;margin:0 0 8px}
+h3{font-size:14px;margin:0 0 12px}
+.editor{width:100%;min-height:340px;background:#080f1d;color:#c7e6ff;border:1px solid var(--line);border-radius:9px;padding:14px;resize:vertical;font-family:monospace;font-size:12px;line-height:1.6}
+.help{color:var(--muted);font-size:12px;line-height:1.6;margin:8px 0 14px}
+.status{margin-top:12px;padding:12px;border-radius:8px;background:#142238;font-size:12px;line-height:1.5;display:none}
+.status.show{display:block}
+.status.error{color:#ff9ca5}
+.status.good{color:#75edbd}
+.upload-area{border:1px dashed #3b5b7d;border-radius:12px;padding:20px;background:#0b1627}
+.field{margin:12px 0}
+.field label{display:block;color:var(--muted);font-size:12px;margin-bottom:7px}
+.field input,.field select{width:100%;padding:11px;background:#081322;color:white;border:1px solid var(--line);border-radius:8px}
+.preview{max-width:100%;max-height:220px;display:none;margin-top:12px;border-radius:9px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:13px;margin-top:15px}
+.media-card{background:#0b1627;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.media-card img{width:100%;height:115px;object-fit:cover;background:#172238}
+.media-info{padding:10px}
+.media-info strong{display:block;font-size:12px;overflow-wrap:anywhere}
+.media-info small{color:var(--muted);font-size:10px}
+.media-actions{display:flex;gap:5px;margin-top:9px}
+.media-actions button{flex:1;padding:7px 4px;font-size:10px}
+.empty{padding:25px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:10px}
 .mobile-menu{display:none}
-@media(max-width:850px){
- .sidebar{width:205px}
- .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
- .module-list{grid-template-columns:repeat(2,minmax(0,1fr))}
-}
-@media(max-width:600px){
+.footer{color:var(--muted);font-size:10px;margin-top:30px;text-align:center}
+@media(max-width:760px){
  .layout{display:block}
- .sidebar{
-  width:100%;padding:14px;
-  border-right:0;border-bottom:1px solid var(--border);
- }
- .brand{margin-left:4px}
- .owner{margin:3px 4px 12px}
- .nav-label{margin-top:12px}
- .nav{
-  display:flex;overflow-x:auto;gap:5px;
-  padding-bottom:5px;
- }
- .nav button{
-  width:auto;white-space:nowrap;
-  padding:10px;font-size:12px;
- }
- .main{padding:17px 12px}
- .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
- .stat{padding:13px}
- .stat .number{font-size:23px}
- .module-list{grid-template-columns:1fr}
- h1{font-size:22px}
- textarea{min-height:260px}
+ .sidebar{width:100%;padding:10px;border-right:0;border-bottom:1px solid var(--line)}
+ .brand{padding:8px;margin-bottom:8px}
+ .nav{display:flex;overflow-x:auto;gap:5px}
+ .nav-label{display:none}
+ .nav button{white-space:nowrap;width:auto;flex-shrink:0;padding:10px}
+ .main{padding:16px}
+ .topbar h1{font-size:19px}
+ .editor{min-height:280px}
 }
 </style>
 </head>
-
 <body>
 <div class="layout">
-
 <aside class="sidebar">
- <div class="brand">SPORTSOFFICIAL007 LIVE</div>
- <div class="owner">OWNER CONTROL CENTRE</div>
-
- <div class="nav">
-  <button class="active" data-page="dashboard">▦ Dashboard</button>
- </div>
-
- <div class="nav-label">MATCH MANAGEMENT</div>
- <div class="nav">
-  <button data-page="matches">🔴 Live Matches</button>
-  <button data-page="fixtures">📅 Fixtures</button>
-  <button data-page="results">🏁 Results</button>
- </div>
-
- <div class="nav-label">SPORTS MANAGEMENT</div>
- <div class="nav">
-  <button data-page="teams">👥 Teams</button>
-  <button data-page="players">🏅 Players</button>
-  <button data-page="tournaments">🏆 Tournaments</button>
-  <button data-page="rankings">📊 Rankings</button>
- </div>
-
- <div class="nav-label">MEDIA CENTRE</div>
- <div class="nav">
-  <button data-page="news">📰 Sports News</button>
-  <button data-page="highlights">🎬 Highlights</button>
-  <button data-page="announcements">📢 Announcements</button>
-  <button data-page="streaming">📺 Streaming</button>
- </div>
-
- <div class="nav-label">SPECIAL EVENTS</div>
- <div class="nav">
-  <button data-page="olympics">🥇 Olympics</button>
-  <button data-page="paralympics">♿ Paralympics</button>
- </div>
-
- <div class="nav-label">WEBSITE CONTROL</div>
- <div class="nav">
-  <button data-page="site">🌐 Website Settings</button>
-  <button data-page="popup">💬 Popup Editor</button>
- </div>
+  <div class="brand">
+    <strong>SPORTSOFFICIAL007</strong>
+    <span>LIVE · ADMIN CONTROL CENTRE</span>
+  </div>
+  <nav class="nav">
+    <div class="nav-label">MAIN</div>
+    <button class="active" data-page="dashboard">⌂ Dashboard</button>
+    <div class="nav-label">SPORTS MANAGEMENT</div>
+    <button data-page="matches">● Live Matches</button>
+    <button data-page="fixtures">▣ Fixtures</button>
+    <button data-page="results">✓ Results</button>
+    <button data-page="teams">⚑ Teams</button>
+    <button data-page="players">♟ Players</button>
+    <button data-page="tournaments">♜ Tournaments</button>
+    <button data-page="rankings">★ Rankings</button>
+    <div class="nav-label">CONTENT</div>
+    <button data-page="news">▤ Sports News</button>
+    <button data-page="highlights">▶ Highlights</button>
+    <button data-page="announcements">◈ Announcements</button>
+    <button data-page="media">▧ Media Library</button>
+    <button data-page="streaming">◎ Streaming Links</button>
+    <div class="nav-label">SPECIAL EVENTS</div>
+    <button data-page="olympics">Olympics</button>
+    <button data-page="paralympics">Paralympics</button>
+    <div class="nav-label">WEBSITE SETTINGS</div>
+    <button data-page="site">Website Settings</button>
+    <button data-page="popup">Popup Settings</button>
+  </nav>
 </aside>
 
-<div class="main">
- <div class="topbar">
+<main class="main">
+<header class="topbar">
   <div>
-   <h1 id="pageTitle">Admin Dashboard</h1>
-   <p id="pageDescription">Your complete sports website overview.</p>
+    <h1 id="pageTitle">Dashboard</h1>
+    <p>Manage your sports website from one place.</p>
   </div>
-  <a class="btn" href="./" target="_blank" rel="noopener">View Website ↗</a>
- </div>
+  <div class="actions">
+    <button class="btn" onclick="loadWebsite()">↻ Reload</button>
+    <button class="btn primary" id="publishButton" onclick="publishWebsite()">Publish Website</button>
+  </div>
+</header>
 
- <main class="content">
-
-  <section id="dashboardPage">
-   <div class="grid">
-    <div class="stat">
-     <div class="symbol">🔴</div>
-     <div class="number" id="countMatches">0</div>
-     <div class="label">Live Matches</div>
-    </div>
-    <div class="stat">
-     <div class="symbol">📅</div>
-     <div class="number" id="countFixtures">0</div>
-     <div class="label">Fixtures</div>
-    </div>
-    <div class="stat">
-     <div class="symbol">🏁</div>
-     <div class="number" id="countResults">0</div>
-     <div class="label">Results</div>
-    </div>
-    <div class="stat">
-     <div class="symbol">🎬</div>
-     <div class="number" id="countHighlights">0</div>
-     <div class="label">Highlights</div>
-    </div>
-   </div>
-
-   <section class="panel">
-    <h2>Welcome, Website Owner</h2>
-    <p>Manage your sports platform from one central control centre.</p>
-    <div class="notice">
-     Your existing admin password and GitHub publishing endpoint are retained.
-     Always publish verified information and authorised video links.
-    </div>
+<section class="page active" id="page-dashboard">
+  <div class="grid">
+    <div class="card"><div class="muted">Live Matches</div><div class="metric" id="countMatches">0</div></div>
+    <div class="card"><div class="muted">Fixtures</div><div class="metric" id="countFixtures">0</div></div>
+    <div class="card"><div class="muted">Results</div><div class="metric" id="countResults">0</div></div>
+    <div class="card"><div class="muted">Media Files</div><div class="metric" id="countMedia">0</div></div>
+  </div>
+  <div class="card">
+    <h2>Welcome to Admin Control Centre</h2>
+    <p class="help">Manage matches, sports information, website content and uploaded images. Changes are published to your public website using the existing publishing system.</p>
     <div class="actions">
-     <button class="primary" onclick="openPage('matches')">Manage Matches</button>
-     <button class="secondary" onclick="openPage('news')">Manage News</button>
-     <button class="secondary" onclick="openPage('site')">Website Settings</button>
+      <button class="btn primary" onclick="openPage('matches')">Manage Matches</button>
+      <button class="btn" onclick="openPage('media')">Open Media Library</button>
     </div>
-   </section>
+  </div>
+  <h3>Management Modules</h3>
+  <div class="grid" id="moduleCards"></div>
+</section>
 
-   <section class="panel">
-    <h2>All Management Modules</h2>
-    <div class="module-list" id="dashboardModules"></div>
-   </section>
-
-   <section class="panel">
-    <h2>Publishing</h2>
-    <p id="dashboardStatus">Loading website data...</p>
-    <button class="primary" onclick="publishWebsite()">Publish Website Data</button>
-   </section>
-  </section>
-
-  <section id="editorPage" class="hidden">
-   <div class="panel">
-    <div class="toolbar">
-     <div>
-      <h2 id="editorTitle">Content Manager</h2>
-      <p id="editorDescription">Edit the selected website data.</p>
-     </div>
-     <span class="small" id="itemCount">0 entries</span>
+<section class="page" id="page-editor">
+  <div class="card">
+    <h2 id="editorTitle">Manage Content</h2>
+    <p class="help" id="editorHelp">Edit the JSON data below. Keep the JSON format valid.</p>
+    <textarea class="editor" id="jsonEditor" spellcheck="false"></textarea>
+    <div class="actions" style="margin-top:13px">
+      <button class="btn success" id="saveLocalButton">Save Changes Locally</button>
+      <button class="btn" id="resetEditorButton">Reset Editor</button>
     </div>
+    <div class="status" id="editorStatus"></div>
+  </div>
+</section>
 
-    <div class="notice" id="editorNotice">
-     Edit the JSON below. Keep the JSON format valid.
-     Use an empty array [] when there are no entries.
+<section class="page" id="page-media">
+  <div class="card">
+    <h2>Media Library</h2>
+    <p class="help">Upload JPEG, PNG or WebP photos directly from your phone. Uploaded images are stored in your GitHub repository through your upload API. No code changes are needed for each new photo.</p>
+    <div class="upload-area">
+      <div class="field">
+        <label>Select an image</label>
+        <input type="file" id="mediaFile" accept="image/jpeg,image/png,image/webp">
+      </div>
+      <div class="field">
+        <label>Image title</label>
+        <input id="mediaTitle" maxlength="100" placeholder="Example: India Cricket Team">
+      </div>
+      <div class="field">
+        <label>Image category</label>
+        <select id="mediaCategory">
+          <option value="Match Photo">Match Photo</option>
+          <option value="Team Logo">Team Logo</option>
+          <option value="Player Photo">Player Photo</option>
+          <option value="Tournament Poster">Tournament Poster</option>
+          <option value="Sports News">Sports News</option>
+          <option value="Homepage Banner">Homepage Banner</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <img id="imagePreview" class="preview" alt="Selected image preview">
+      <div style="margin-top:14px">
+        <button class="btn primary" id="uploadButton" onclick="uploadImage()">Upload Photo</button>
+      </div>
+      <div class="status" id="uploadStatus"></div>
     </div>
+  </div>
+  <div class="card">
+    <h2>Uploaded Photos</h2>
+    <p class="help">After uploading, press Publish Website to save the Media Library list in your website data. You can copy an image URL and use it in content records.</p>
+    <div id="mediaGallery" class="gallery"></div>
+  </div>
+</section>
 
-    <label for="jsonEditor">Website Content (JSON)</label>
-    <textarea id="jsonEditor" spellcheck="false"></textarea>
-
-    <div class="actions">
-     <button class="primary" id="saveLocalButton">Save Changes</button>
-     <button class="secondary" id="reloadButton">Reload Original</button>
-     <button class="secondary" onclick="publishWebsite()">Publish Website</button>
-    </div>
-
-    <p id="editorStatus" class="status" aria-live="polite"></p>
-   </div>
-  </section>
-
-  <section class="panel">
-   <h2>Publishing Status</h2>
-   <p id="globalStatus" class="status" aria-live="polite">Loading website data...</p>
-   <p class="small">Your admin password is requested only when publishing. It is not saved in this page.</p>
-  </section>
-
-  <section class="panel">
-   <h2>Quick Links</h2>
-   <div class="actions">
-    <a class="btn" href="./" target="_blank" rel="noopener">Public Website</a>
-    <a class="btn" href="https://github.com/Abhimanyu-X-cmyk/SPORTS-OFFICIAL007-LIVE" target="_blank" rel="noopener">GitHub Repository</a>
-   </div>
-  </section>
-
- </main>
-
- <footer>SPORTSOFFICIAL007 LIVE · Owner Admin Control Centre · Version 2.0</footer>
-</div>
+<div class="footer">SPORTSOFFICIAL007 LIVE · ADMIN CONTROL CENTRE</div>
+</main>
 </div>
 
 <script>
-const DATA_URL = "./data/site-content.json";
-const PUBLISH_URL = "/api/publish";
+"use strict";
 
-let siteData = null;
-let currentPage = "dashboard";
-let originalEditorValue = "";
+const API_PUBLISH = "./api/publish";
+const API_UPLOAD = "./api/upload";
 
-const modules = {
- matches:{
-  title:"Live Matches",
-  description:"Manage live match listings.",
-  key:"matches",type:"array"
- },
- fixtures:{
-  title:"Fixtures",
-  description:"Manage upcoming sports fixtures.",
-  key:"fixtures",type:"array"
- },
- results:{
-  title:"Results",
-  description:"Manage completed match results.",
-  key:"results",type:"array"
- },
- teams:{
-  title:"Teams",
-  description:"Manage team profiles and information.",
-  key:"teams",type:"array"
- },
- players:{
-  title:"Players",
-  description:"Manage player profiles and information.",
-  key:"players",type:"array"
- },
- tournaments:{
-  title:"Tournaments",
-  description:"Manage sports tournaments and competitions.",
-  key:"tournaments",type:"array"
- },
- rankings:{
-  title:"Rankings",
-  description:"Manage sports rankings and statistics.",
-  key:"rankings",type:"array"
- },
- news:{
-  title:"Sports News",
-  description:"Manage sports news articles.",
-  key:"news",type:"array"
- },
- highlights:{
-  title:"Highlights",
-  description:"Manage authorised sports highlight videos.",
-  key:"highlights",type:"array"
- },
- announcements:{
-  title:"Announcements",
-  description:"Manage website announcements.",
-  key:"announcements",type:"array"
- },
- streaming:{
-  title:"Streaming Management",
-  description:"Manage authorised streaming information and links.",
-  key:"streaming",type:"array"
- },
- olympics:{
-  title:"Olympics",
-  description:"Manage Olympic events and medal information.",
-  key:"olympics",type:"object"
- },
- paralympics:{
-  title:"Paralympics",
-  description:"Manage Paralympic events and medal information.",
-  key:"paralympics",type:"object"
- },
- site:{
-  title:"Website Settings",
-  description:"Edit your website name, tagline and official links.",
-  key:"site",type:"object"
- },
- popup:{
-  title:"Popup Editor",
-  description:"Manage the website subscription popup.",
-  key:"popup",type:"object"
- }
+let siteData = {};
+let currentModule = "matches";
+let selectedFile = null;
+
+const moduleConfig = {
+  matches:{title:"Live Matches",key:"matches",type:"array",help:"Add live match records. Keep the fields used by your public website."},
+  fixtures:{title:"Fixtures",key:"fixtures",type:"array",help:"Manage upcoming match schedules."},
+  results:{title:"Results",key:"results",type:"array",help:"Manage completed match results."},
+  teams:{title:"Teams",key:"teams",type:"array",help:"Add team information and logo URLs."},
+  players:{title:"Players",key:"players",type:"array",help:"Add player information and photo URLs."},
+  tournaments:{title:"Tournaments",key:"tournaments",type:"array",help:"Manage tournament details."},
+  rankings:{title:"Rankings",key:"rankings",type:"array",help:"Manage sports rankings."},
+  news:{title:"Sports News",key:"news",type:"array",help:"Manage sports news articles and image URLs."},
+  highlights:{title:"Highlights",key:"highlights",type:"array",help:"Manage authorised highlights and video links."},
+  announcements:{title:"Announcements",key:"announcements",type:"array",help:"Manage website announcements."},
+  streaming:{title:"Streaming Links",key:"streaming",type:"array",help:"Add official or authorised streaming links only."},
+  olympics:{title:"Olympics",key:"olympics",type:"object",help:"Edit Olympics settings, events and medal information."},
+  paralympics:{title:"Paralympics",key:"paralympics",type:"object",help:"Edit Paralympics settings, events and medal information."},
+  site:{title:"Website Settings",key:"site",type:"object",help:"Change website name, tagline and social links."},
+  popup:{title:"Popup Settings",key:"popup",type:"object",help:"Edit the visitor popup and its button."}
 };
 
-const dashboardModules = [
- ["matches","🔴","Live Matches"],
- ["fixtures","📅","Fixtures"],
- ["results","🏁","Results"],
- ["teams","👥","Teams"],
- ["players","🏅","Players"],
- ["tournaments","🏆","Tournaments"],
- ["rankings","📊","Rankings"],
- ["news","📰","Sports News"],
- ["highlights","🎬","Highlights"],
- ["announcements","📢","Announcements"],
- ["streaming","📺","Streaming"],
- ["olympics","🥇","Olympics"],
- ["paralympics","♿","Paralympics"],
- ["site","🌐","Website Settings"],
- ["popup","💬","Popup Editor"]
-];
+function defaults(){
+  const base = {
+    site:{name:"SPORTSOFFICIAL007 LIVE",tagline:"Every Sport. One Destination.",youtube:""},
+    popup:{enabled:true,title:"Stay Updated!",message:"Subscribe us for latest updates and information regarding website or any sport.",buttonText:"Subscribe on YouTube",url:""},
+    sports:["Cricket","Football","Basketball","Tennis","Hockey","Badminton","Volleyball","Swimming","Athletics","Boxing","Wrestling","Cycling","Table Tennis","Golf","Rugby","Motorsport","Archery","Gymnastics","Baseball","Squash","Weightlifting","Other Sports"],
+    matches:[],fixtures:[],results:[],teams:[],players:[],tournaments:[],rankings:[],
+    news:[],highlights:[],announcements:[],streaming:[],media:[],
+    olympics:{enabled:true,events:[],medals:[]},
+    paralympics:{enabled:true,events:[],medals:[]}
+  };
 
-const $ = id => document.getElementById(id);
-
-function setStatus(message,error=false){
- $("globalStatus").textContent=message;
- $("globalStatus").className=error?"status error":"status";
- $("dashboardStatus").textContent=message;
+  for(const key in base){
+    if(siteData[key] === undefined || siteData[key] === null){
+      siteData[key] = base[key];
+    }
+  }
+  if(!Array.isArray(siteData.media)) siteData.media=[];
 }
 
-function initializeDefaults(){
- const arrayKeys=[
-  "matches","fixtures","results","teams","players",
-  "tournaments","rankings","news","highlights",
-  "announcements","streaming"
- ];
-
- arrayKeys.forEach(key=>{
-  if(!Array.isArray(siteData[key])) siteData[key]=[];
- });
-
- if(!siteData.site || typeof siteData.site!=="object")
-  siteData.site={name:"SPORTSOFFICIAL007 LIVE",tagline:"Every Sport. One Destination."};
-
- if(!siteData.popup || typeof siteData.popup!=="object")
-  siteData.popup={enabled:false,title:"Stay Updated!",message:"",buttonText:"Subscribe",url:""};
-
- ["olympics","paralympics"].forEach(key=>{
-  if(!siteData[key] || typeof siteData[key]!=="object")
-   siteData[key]={enabled:true,events:[],medals:[]};
-
-  if(!Array.isArray(siteData[key].events)) siteData[key].events=[];
-  if(!Array.isArray(siteData[key].medals)) siteData[key].medals=[];
- });
-}
-
-async function initialize(){
- try{
-  const response=await fetch(DATA_URL,{cache:"no-store"});
-  if(!response.ok) throw new Error("Could not load website data.");
-
-  siteData=await response.json();
-  initializeDefaults();
-
-  updateDashboard();
-  renderDashboardModules();
-  setStatus("Website data loaded successfully.");
- }catch(error){
-  setStatus(error.message+" Check your website deployment.",true);
- }
-}
-
-function updateDashboard(){
- $("countMatches").textContent=siteData.matches.length;
- $("countFixtures").textContent=siteData.fixtures.length;
- $("countResults").textContent=siteData.results.length;
- $("countHighlights").textContent=siteData.highlights.length;
-}
-
-function renderDashboardModules(){
- const container=$("dashboardModules");
- container.replaceChildren();
-
- dashboardModules.forEach(([page,icon,title])=>{
-  const card=document.createElement("div");
-  card.className="module-card";
-
-  const heading=document.createElement("strong");
-  heading.textContent=icon+" "+title;
-
-  const button=document.createElement("button");
-  button.className="secondary";
-  button.textContent="Open Manager";
-  button.style.marginTop="12px";
-  button.onclick=()=>openPage(page);
-
-  card.append(heading,button);
-  container.appendChild(card);
- });
+function showStatus(id,message,type){
+  const el=document.getElementById(id);
+  el.textContent=message;
+  el.className="status show "+(type||"");
 }
 
 function openPage(page){
- if(!siteData){
-  setStatus("Website data is not loaded yet.",true);
-  return;
- }
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));
 
- currentPage=page;
+  const nav=document.querySelector('[data-page="'+page+'"]');
+  if(nav) nav.classList.add("active");
 
- document.querySelectorAll("[data-page]").forEach(button=>{
-  button.classList.toggle("active",button.dataset.page===page);
- });
+  if(page==="dashboard"){
+    document.getElementById("page-dashboard").classList.add("active");
+    document.getElementById("pageTitle").textContent="Dashboard";
+    updateDashboard();
+    return;
+  }
 
- if(page==="dashboard"){
-  $("dashboardPage").classList.remove("hidden");
-  $("editorPage").classList.add("hidden");
-  $("pageTitle").textContent="Admin Dashboard";
-  $("pageDescription").textContent="Your complete sports website overview.";
-  updateDashboard();
-  return;
- }
+  if(page==="media"){
+    document.getElementById("page-media").classList.add("active");
+    document.getElementById("pageTitle").textContent="Media Library";
+    renderGallery();
+    return;
+  }
 
- const config=modules[page];
- if(!config)return;
+  const config=moduleConfig[page];
+  if(!config) return;
 
- $("dashboardPage").classList.add("hidden");
- $("editorPage").classList.remove("hidden");
-
- $("pageTitle").textContent=config.title;
- $("pageDescription").textContent=config.description;
- $("editorTitle").textContent=config.title+" Manager";
- $("editorDescription").textContent=config.description;
-
- loadEditor();
+  currentModule=page;
+  document.getElementById("page-editor").classList.add("active");
+  document.getElementById("pageTitle").textContent=config.title;
+  document.getElementById("editorTitle").textContent=config.title;
+  document.getElementById("editorHelp").textContent=config.help;
+  document.getElementById("jsonEditor").value=JSON.stringify(siteData[config.key],null,2);
+  document.getElementById("editorStatus").className="status";
 }
 
-function loadEditor(){
- const config=modules[currentPage];
- const value=siteData[config.key];
-
- originalEditorValue=JSON.stringify(value,null,2);
- $("jsonEditor").value=originalEditorValue;
-
- const count=Array.isArray(value)?value.length:
-  (value && typeof value==="object"?Object.keys(value).length:0);
-
- $("itemCount").textContent=count+" "+(config.type==="array"?"entries":"properties");
-
- $("editorNotice").textContent=config.type==="array"
-  ? "Edit the list of records below. Add new records using JSON objects inside the array. Do not remove the surrounding [ and ]."
-  : "Edit this settings object. Keep the property names and JSON format valid.";
-
- $("editorStatus").textContent="";
-}
-
-document.querySelectorAll("[data-page]").forEach(button=>{
- button.addEventListener("click",()=>openPage(button.dataset.page));
+document.querySelectorAll(".nav button").forEach(button=>{
+  button.addEventListener("click",()=>openPage(button.dataset.page));
 });
 
-$("saveLocalButton").addEventListener("click",()=>{
- if(!siteData)return;
-
- const config=modules[currentPage];
-
- try{
-  const parsed=JSON.parse($("jsonEditor").value);
-
-  if(config.type==="array" && !Array.isArray(parsed)){
-   throw new Error("This section must contain a JSON array [].");
-  }
-
-  if(config.type==="object" && (!parsed || Array.isArray(parsed) || typeof parsed!=="object")){
-   throw new Error("This section must contain a JSON object {}.");
-  }
-
-  if(currentPage==="matches" || currentPage==="fixtures" || currentPage==="results"){
-   for(const item of parsed){
-    if(!item || typeof item!=="object" || Array.isArray(item)){
-     throw new Error("Every match entry must be a JSON object.");
+document.getElementById("saveLocalButton").addEventListener("click",()=>{
+  const config=moduleConfig[currentModule];
+  try{
+    const parsed=JSON.parse(document.getElementById("jsonEditor").value);
+    if(config.type==="array" && !Array.isArray(parsed)){
+      throw new Error("This section must contain a JSON array [ ].");
     }
-   }
+    if(config.type==="object" && (typeof parsed!=="object" || parsed===null || Array.isArray(parsed))){
+      throw new Error("This section must contain a JSON object { }.");
+    }
+    siteData[config.key]=parsed;
+    showStatus("editorStatus","Changes saved in this browser session. Press Publish Website to update the public website.","good");
+    updateDashboard();
+  }catch(error){
+    showStatus("editorStatus","Invalid JSON: "+error.message,"error");
   }
-
-  siteData[config.key]=parsed;
-  originalEditorValue=JSON.stringify(parsed,null,2);
-  $("jsonEditor").value=originalEditorValue;
-
-  $("editorStatus").textContent="Changes saved in this dashboard. Publish to make them public.";
-  $("editorStatus").className="status";
-
-  updateDashboard();
-  setStatus("Dashboard updated. Publish to save your changes publicly.");
- }catch(error){
-  $("editorStatus").textContent="Error: "+error.message;
-  $("editorStatus").className="status error";
- }
 });
 
-$("reloadButton").addEventListener("click",()=>{
- if(!confirm("Discard unsaved changes in this editor?"))return;
- loadEditor();
+document.getElementById("resetEditorButton").addEventListener("click",()=>{
+  const config=moduleConfig[currentModule];
+  document.getElementById("jsonEditor").value=JSON.stringify(siteData[config.key],null,2);
+  showStatus("editorStatus","Editor reset to the last locally saved data.","");
 });
+
+function updateDashboard(){
+  const count=(key)=>Array.isArray(siteData[key])?siteData[key].length:0;
+  document.getElementById("countMatches").textContent=count("matches");
+  document.getElementById("countFixtures").textContent=count("fixtures");
+  document.getElementById("countResults").textContent=count("results");
+  document.getElementById("countMedia").textContent=count("media");
+}
+
+function buildModuleCards(){
+  const container=document.getElementById("moduleCards");
+  container.replaceChildren();
+
+  Object.keys(moduleConfig).forEach(key=>{
+    const card=document.createElement("div");
+    card.className="card module-card";
+    const title=document.createElement("strong");
+    title.textContent=moduleConfig[key].title;
+    const desc=document.createElement("span");
+    desc.className="muted";
+    desc.textContent="Open and manage this section";
+    card.append(title,desc);
+    card.addEventListener("click",()=>openPage(key));
+    container.appendChild(card);
+  });
+  const media=document.createElement("div");
+  media.className="card module-card";
+  media.innerHTML="<strong>Media Library</strong><span class='muted'>Upload and manage photos</span>";
+  media.addEventListener("click",()=>openPage("media"));
+  container.appendChild(media);
+}
+
+async function loadWebsite(){
+  try{
+    const response=await fetch("./data/site-content.json?time="+Date.now(),{cache:"no-store"});
+    if(!response.ok) throw new Error("Could not load website data. HTTP "+response.status);
+    siteData=await response.json();
+    defaults();
+    updateDashboard();
+    renderGallery();
+    showStatus("uploadStatus","Website data loaded.","good");
+  }catch(error){
+    siteData={};
+    defaults();
+    updateDashboard();
+    renderGallery();
+    alert("Website data could not be loaded: "+error.message);
+  }
+}
 
 async function publishWebsite(){
- if(!siteData){
-  setStatus("Website data has not loaded.",true);
-  return;
- }
+  const password=prompt("Enter your existing Admin Password to publish the website:");
+  if(password===null) return;
+  if(!password){alert("Password is required.");return;}
 
- const password=prompt("Enter your existing Admin Password to publish:");
- if(password===null)return;
+  const button=document.getElementById("publishButton");
+  button.disabled=true;
+  button.textContent="Publishing...";
 
- if(!password.trim()){
-  setStatus("Password cannot be empty.",true);
-  return;
- }
-
- const button=document.querySelectorAll("button");
- button.forEach(b=>b.disabled=true);
-
- setStatus("Publishing website data...");
-
- try{
-  const response=await fetch(PUBLISH_URL,{
-   method:"POST",
-   headers:{"Content-Type":"application/json"},
-   body:JSON.stringify({
-    adminPassword:password,
-    siteData:siteData
-   })
-  });
-
-  const result=await response.json();
-
-  if(!response.ok || !result.success){
-   throw new Error(result.error||"Publishing failed.");
+  try{
+    const response=await fetch(API_PUBLISH,{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({adminPassword:password,siteData:siteData})
+    });
+    const result=await response.json().catch(()=>({}));
+    if(!response.ok) throw new Error(result.error||result.message||"Publishing failed. HTTP "+response.status);
+    alert(result.message||"Website data published successfully!");
+  }catch(error){
+    alert("Publishing failed: "+error.message);
+  }finally{
+    button.disabled=false;
+    button.textContent="Publish Website";
   }
-
-  setStatus("Published successfully to GitHub! Your website may take a short time to update.");
-
- }catch(error){
-  setStatus("Publishing failed: "+error.message,true);
- }finally{
-  button.forEach(b=>b.disabled=false);
- }
 }
 
-initialize();
-</script>
-</body>
-</html>
+document.getElementById("mediaFile").addEventListener("change",event=>{
+  selectedFile=event.target.files && event.target.files[0] ? event.target.files[0] : null;
+  const preview=document.getElementById("imagePreview");
+  preview.style.display="none";
+
+  if(!selectedFile) return;
+
+  const allowed=["image/jpeg","image/png","image/webp"];
+  if(!allowed.includes(selectedFile.type)){
+    alert("Please select a JPEG, PNG or WebP image.");
+    event.target.value="";
+    selectedFile=null;
+    return;
+  }
+  if(selectedFile.size>2.5*1024*1024){
+    alert("Please select an image smaller than 2.5 MB.");
+    event.target.value="";
+    selectedFile=null;
+    return;
+  }
+
+  preview.src=URL.createObjectURL(selectedFile);
+  preview.style.display="block";
+  if(!document.getElementById("mediaTitle").value){
+    document.getElementById("mediaTitle").value=selectedFile.name.replace(/\.[^.]+$/,"");
+  }
+});
+
+function readAsDataURL(file){
+  return new Promise((resolve,reject)=>{
+    const reader=new FileReader();
+    reader.onload=()=>resolve(reader.result);
+    reader.onerror=()=>reject(new Error("Could not read the selected image."));
+    reader.readAsDataURL(file);
+  });
+}
+
+async function uploadImage(){
+  if(!selectedFile){
+    alert("Please select an image first.");
+    return;
+  }
+
+  const password=prompt("Enter your existing Admin Password to upload this photo:");
+  if(password===null) return;
+  if(!password){alert("Password is required.");return;}
+
+  const button=document.getElementById("uploadButton");
+  button.disabled=true;
+  button.textContent="Uploading...";
+  showStatus("uploadStatus","Uploading image to your repository...","");
+
+  try{
+    const dataURL=await readAsDataURL(selectedFile);
+    const base64=dataURL.split(",")[1];
+    if(!base64) throw new Error("Could not prepare the image.");
+
+    const response=await fetch(API_UPLOAD,{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({
+        adminPassword:password,
+        m
