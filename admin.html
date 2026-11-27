@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,9 +9,9 @@
 <title>SPORTSOFFICIAL007 LIVE | Admin Control Centre</title>
 <style>
 :root{
-  --bg:#080d18;--panel:#101a2b;--panel2:#142238;
-  --line:#24344c;--text:#edf4ff;--muted:#91a4bd;
-  --blue:#2585ff;--cyan:#00d9ff;--red:#ff5364;--green:#28ce91;
+--bg:#080d18;--panel:#101a2b;--panel2:#142238;
+--line:#24344c;--text:#edf4ff;--muted:#91a4bd;
+--blue:#2585ff;--cyan:#00d9ff;--red:#ff5364;--green:#28ce91;
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif}
@@ -66,390 +67,468 @@ h3{font-size:14px;margin:0 0 12px}
 .media-actions{display:flex;gap:5px;margin-top:9px}
 .media-actions button{flex:1;padding:7px 4px;font-size:10px}
 .empty{padding:25px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:10px}
-.mobile-menu{display:none}
 .footer{color:var(--muted);font-size:10px;margin-top:30px;text-align:center}
 @media(max-width:760px){
- .layout{display:block}
- .sidebar{width:100%;padding:10px;border-right:0;border-bottom:1px solid var(--line)}
- .brand{padding:8px;margin-bottom:8px}
- .nav{display:flex;overflow-x:auto;gap:5px}
- .nav-label{display:none}
- .nav button{white-space:nowrap;width:auto;flex-shrink:0;padding:10px}
- .main{padding:16px}
- .topbar h1{font-size:19px}
- .editor{min-height:280px}
+.layout{display:block}
+.sidebar{width:100%;padding:10px;border-right:0;border-bottom:1px solid var(--line)}
+.brand{padding:8px;margin-bottom:8px}
+.nav{display:flex;overflow-x:auto;gap:5px}
+.nav-label{display:none}
+.nav button{white-space:nowrap;width:auto;flex-shrink:0;padding:10px}
+.main{padding:16px}
+.topbar h1{font-size:19px}
+.editor{min-height:280px}
 }
 </style>
 </head>
 <body>
 <div class="layout">
 <aside class="sidebar">
-  <div class="brand">
-    <strong>SPORTSOFFICIAL007</strong>
-    <span>LIVE · ADMIN CONTROL CENTRE</span>
-  </div>
-  <nav class="nav">
-    <div class="nav-label">MAIN</div>
-    <button class="active" data-page="dashboard">⌂ Dashboard</button>
-    <div class="nav-label">SPORTS MANAGEMENT</div>
-    <button data-page="matches">● Live Matches</button>
-    <button data-page="fixtures">▣ Fixtures</button>
-    <button data-page="results">✓ Results</button>
-    <button data-page="teams">⚑ Teams</button>
-    <button data-page="players">♟ Players</button>
-    <button data-page="tournaments">♜ Tournaments</button>
-    <button data-page="rankings">★ Rankings</button>
-    <div class="nav-label">CONTENT</div>
-    <button data-page="news">▤ Sports News</button>
-    <button data-page="highlights">▶ Highlights</button>
-    <button data-page="announcements">◈ Announcements</button>
-    <button data-page="media">▧ Media Library</button>
-    <button data-page="streaming">◎ Streaming Links</button>
-    <div class="nav-label">SPECIAL EVENTS</div>
-    <button data-page="olympics">Olympics</button>
-    <button data-page="paralympics">Paralympics</button>
-    <div class="nav-label">WEBSITE SETTINGS</div>
-    <button data-page="site">Website Settings</button>
-    <button data-page="popup">Popup Settings</button>
-  </nav>
+<div class="brand">
+<strong>SPORTSOFFICIAL007</strong>
+<span>LIVE · ADMIN CONTROL CENTRE</span>
+</div>
+<nav class="nav">
+<div class="nav-label">MAIN</div>
+<button class="active" data-page="dashboard">⌂ Dashboard</button>
+<div class="nav-label">SPORTS MANAGEMENT</div>
+<button data-page="matches">● Live Matches</button>
+<button data-page="fixtures">▣ Fixtures</button>
+<button data-page="results">✓ Results</button>
+<button data-page="teams">⚑ Teams</button>
+<button data-page="players">♟ Players</button>
+<button data-page="tournaments">♜ Tournaments</button>
+<button data-page="rankings">★ Rankings</button>
+<div class="nav-label">CONTENT</div>
+<button data-page="news">▤ Sports News</button>
+<button data-page="highlights">▶ Highlights</button>
+<button data-page="announcements">◈ Announcements</button>
+<button data-page="media">▧ Media Library</button>
+<button data-page="streaming">◎ Streaming Links</button>
+<div class="nav-label">SPECIAL EVENTS</div>
+<button data-page="olympics">Olympics</button>
+<button data-page="paralympics">Paralympics</button>
+<div class="nav-label">WEBSITE SETTINGS</div>
+<button data-page="site">Website Settings</button>
+<button data-page="popup">Popup Settings</button>
+</nav>
 </aside>
 
 <main class="main">
 <header class="topbar">
-  <div>
-    <h1 id="pageTitle">Dashboard</h1>
-    <p>Manage your sports website from one place.</p>
-  </div>
-  <div class="actions">
-    <button class="btn" onclick="loadWebsite()">↻ Reload</button>
-    <button class="btn primary" id="publishButton" onclick="publishWebsite()">Publish Website</button>
-  </div>
+<div>
+<h1 id="pageTitle">Dashboard</h1>
+<p>Manage your sports website from one place.</p>
+</div>
+<div class="actions">
+<button class="btn" onclick="loadWebsite()">↻ Reload</button>
+<button class="btn primary" id="publishButton" onclick="publishWebsite()">Publish Website</button>
+</div>
 </header>
 
 <section class="page active" id="page-dashboard">
-  <div class="grid">
-    <div class="card"><div class="muted">Live Matches</div><div class="metric" id="countMatches">0</div></div>
-    <div class="card"><div class="muted">Fixtures</div><div class="metric" id="countFixtures">0</div></div>
-    <div class="card"><div class="muted">Results</div><div class="metric" id="countResults">0</div></div>
-    <div class="card"><div class="muted">Media Files</div><div class="metric" id="countMedia">0</div></div>
-  </div>
-  <div class="card">
-    <h2>Welcome to Admin Control Centre</h2>
-    <p class="help">Manage matches, sports information, website content and uploaded images. Changes are published to your public website using the existing publishing system.</p>
-    <div class="actions">
-      <button class="btn primary" onclick="openPage('matches')">Manage Matches</button>
-      <button class="btn" onclick="openPage('media')">Open Media Library</button>
-    </div>
-  </div>
-  <h3>Management Modules</h3>
-  <div class="grid" id="moduleCards"></div>
+<div class="grid">
+<div class="card"><div class="muted">Live Matches</div><div class="metric" id="countMatches">0</div></div>
+<div class="card"><div class="muted">Fixtures</div><div class="metric" id="countFixtures">0</div></div>
+<div class="card"><div class="muted">Results</div><div class="metric" id="countResults">0</div></div>
+<div class="card"><div class="muted">Media Files</div><div class="metric" id="countMedia">0</div></div>
+</div>
+<div class="card">
+<h2>Welcome to Admin Control Centre</h2>
+<p class="help">Manage matches, sports information, website content and uploaded images. Changes are published to your public website using the existing publishing system.</p>
+<div class="actions">
+<button class="btn primary" onclick="openPage('matches')">Manage Matches</button>
+<button class="btn" onclick="openPage('media')">Open Media Library</button>
+</div>
+</div>
+<h3>Management Modules</h3>
+<div class="grid" id="moduleCards"></div>
 </section>
 
 <section class="page" id="page-editor">
-  <div class="card">
-    <h2 id="editorTitle">Manage Content</h2>
-    <p class="help" id="editorHelp">Edit the JSON data below. Keep the JSON format valid.</p>
-    <textarea class="editor" id="jsonEditor" spellcheck="false"></textarea>
-    <div class="actions" style="margin-top:13px">
-      <button class="btn success" id="saveLocalButton">Save Changes Locally</button>
-      <button class="btn" id="resetEditorButton">Reset Editor</button>
-    </div>
-    <div class="status" id="editorStatus"></div>
-  </div>
+<div class="card">
+<h2 id="editorTitle">Manage Content</h2>
+<p class="help" id="editorHelp">Edit the JSON data below. Keep the JSON format valid.</p>
+<textarea class="editor" id="jsonEditor" spellcheck="false"></textarea>
+<div class="actions" style="margin-top:13px">
+<button class="btn success" id="saveLocalButton">Save Changes Locally</button>
+<button class="btn" id="resetEditorButton">Reset Editor</button>
+</div>
+<div class="status" id="editorStatus"></div>
+</div>
 </section>
 
 <section class="page" id="page-media">
-  <div class="card">
-    <h2>Media Library</h2>
-    <p class="help">Upload JPEG, PNG or WebP photos directly from your phone. Uploaded images are stored in your GitHub repository through your upload API. No code changes are needed for each new photo.</p>
-    <div class="upload-area">
-      <div class="field">
-        <label>Select an image</label>
-        <input type="file" id="mediaFile" accept="image/jpeg,image/png,image/webp">
-      </div>
-      <div class="field">
-        <label>Image title</label>
-        <input id="mediaTitle" maxlength="100" placeholder="Example: India Cricket Team">
-      </div>
-      <div class="field">
-        <label>Image category</label>
-        <select id="mediaCategory">
-          <option value="Match Photo">Match Photo</option>
-          <option value="Team Logo">Team Logo</option>
-          <option value="Player Photo">Player Photo</option>
-          <option value="Tournament Poster">Tournament Poster</option>
-          <option value="Sports News">Sports News</option>
-          <option value="Homepage Banner">Homepage Banner</option>
-          <option value="Other">Other</option>
-        </select>
-      </div>
-      <img id="imagePreview" class="preview" alt="Selected image preview">
-      <div style="margin-top:14px">
-        <button class="btn primary" id="uploadButton" onclick="uploadImage()">Upload Photo</button>
-      </div>
-      <div class="status" id="uploadStatus"></div>
-    </div>
-  </div>
-  <div class="card">
-    <h2>Uploaded Photos</h2>
-    <p class="help">After uploading, press Publish Website to save the Media Library list in your website data. You can copy an image URL and use it in content records.</p>
-    <div id="mediaGallery" class="gallery"></div>
-  </div>
+<div class="card">
+<h2>Media Library</h2>
+<p class="help">Upload JPEG, PNG or WebP photos directly from your phone. Uploaded images are stored in your GitHub repository through your upload API. No code changes are needed for each new photo.</p>
+<div class="upload-area">
+<div class="field">
+<label>Select an image</label>
+<input type="file" id="mediaFile" accept="image/jpeg,image/png,image/webp">
+</div>
+<div class="field">
+<label>Image title</label>
+<input id="mediaTitle" maxlength="100" placeholder="Example: India Cricket Team">
+</div>
+<div class="field">
+<label>Image category</label>
+<select id="mediaCategory">
+<option value="Match Photo">Match Photo</option>
+<option value="Team Logo">Team Logo</option>
+<option value="Player Photo">Player Photo</option>
+<option value="Tournament Poster">Tournament Poster</option>
+<option value="Sports News">Sports News</option>
+<option value="Homepage Banner">Homepage Banner</option>
+<option value="Other">Other</option>
+</select>
+</div>
+<img id="imagePreview" class="preview" alt="Selected image preview">
+<div style="margin-top:14px">
+<button class="btn primary" id="uploadButton" onclick="uploadImage()">Upload Photo</button>
+</div>
+<div class="status" id="uploadStatus"></div>
+</div>
+</div>
+<div class="card">
+<h2>Uploaded Photos</h2>
+<p class="help">After uploading, press Publish Website to save the Media Library list in your website data. You can copy an image URL and use it in content records.</p>
+<div id="mediaGallery" class="gallery"></div>
+</div>
 </section>
 
 <div class="footer">SPORTSOFFICIAL007 LIVE · ADMIN CONTROL CENTRE</div>
 </main>
 </div>
 
+
 <script>
 "use strict";
 
-const API_PUBLISH = "./api/publish";
-const API_UPLOAD = "./api/upload";
+const API_PUBLISH="./api/publish";
+const API_UPLOAD="./api/upload";
 
-let siteData = {};
-let currentModule = "matches";
-let selectedFile = null;
+let siteData={};
+let currentModule="matches";
+let selectedFile=null;
 
-const moduleConfig = {
-  matches:{title:"Live Matches",key:"matches",type:"array",help:"Add live match records. Keep the fields used by your public website."},
-  fixtures:{title:"Fixtures",key:"fixtures",type:"array",help:"Manage upcoming match schedules."},
-  results:{title:"Results",key:"results",type:"array",help:"Manage completed match results."},
-  teams:{title:"Teams",key:"teams",type:"array",help:"Add team information and logo URLs."},
-  players:{title:"Players",key:"players",type:"array",help:"Add player information and photo URLs."},
-  tournaments:{title:"Tournaments",key:"tournaments",type:"array",help:"Manage tournament details."},
-  rankings:{title:"Rankings",key:"rankings",type:"array",help:"Manage sports rankings."},
-  news:{title:"Sports News",key:"news",type:"array",help:"Manage sports news articles and image URLs."},
-  highlights:{title:"Highlights",key:"highlights",type:"array",help:"Manage authorised highlights and video links."},
-  announcements:{title:"Announcements",key:"announcements",type:"array",help:"Manage website announcements."},
-  streaming:{title:"Streaming Links",key:"streaming",type:"array",help:"Add official or authorised streaming links only."},
-  olympics:{title:"Olympics",key:"olympics",type:"object",help:"Edit Olympics settings, events and medal information."},
-  paralympics:{title:"Paralympics",key:"paralympics",type:"object",help:"Edit Paralympics settings, events and medal information."},
-  site:{title:"Website Settings",key:"site",type:"object",help:"Change website name, tagline and social links."},
-  popup:{title:"Popup Settings",key:"popup",type:"object",help:"Edit the visitor popup and its button."}
+const moduleConfig={
+matches:{title:"Live Matches",key:"matches",type:"array",help:"Add live match records. Keep the fields used by your public website."},
+fixtures:{title:"Fixtures",key:"fixtures",type:"array",help:"Manage upcoming match schedules."},
+results:{title:"Results",key:"results",type:"array",help:"Manage completed match results."},
+teams:{title:"Teams",key:"teams",type:"array",help:"Add team information and logo URLs."},
+players:{title:"Players",key:"players",type:"array",help:"Add player information and photo URLs."},
+tournaments:{title:"Tournaments",key:"tournaments",type:"array",help:"Manage tournament details."},
+rankings:{title:"Rankings",key:"rankings",type:"array",help:"Manage sports rankings."},
+news:{title:"Sports News",key:"news",type:"array",help:"Manage sports news articles and image URLs."},
+highlights:{title:"Highlights",key:"highlights",type:"array",help:"Manage authorised highlights and video links."},
+announcements:{title:"Announcements",key:"announcements",type:"array",help:"Manage website announcements."},
+streaming:{title:"Streaming Links",key:"streaming",type:"array",help:"Add official or authorised streaming links only."},
+olympics:{title:"Olympics",key:"olympics",type:"object",help:"Edit Olympics settings, events and medal information."},
+paralympics:{title:"Paralympics",key:"paralympics",type:"object",help:"Edit Paralympics settings, events and medal information."},
+site:{title:"Website Settings",key:"site",type:"object",help:"Change website name, tagline and social links."},
+popup:{title:"Popup Settings",key:"popup",type:"object",help:"Edit the visitor popup and its button."}
 };
 
 function defaults(){
-  const base = {
-    site:{name:"SPORTSOFFICIAL007 LIVE",tagline:"Every Sport. One Destination.",youtube:""},
-    popup:{enabled:true,title:"Stay Updated!",message:"Subscribe us for latest updates and information regarding website or any sport.",buttonText:"Subscribe on YouTube",url:""},
-    sports:["Cricket","Football","Basketball","Tennis","Hockey","Badminton","Volleyball","Swimming","Athletics","Boxing","Wrestling","Cycling","Table Tennis","Golf","Rugby","Motorsport","Archery","Gymnastics","Baseball","Squash","Weightlifting","Other Sports"],
-    matches:[],fixtures:[],results:[],teams:[],players:[],tournaments:[],rankings:[],
-    news:[],highlights:[],announcements:[],streaming:[],media:[],
-    olympics:{enabled:true,events:[],medals:[]},
-    paralympics:{enabled:true,events:[],medals:[]}
-  };
-
-  for(const key in base){
-    if(siteData[key] === undefined || siteData[key] === null){
-      siteData[key] = base[key];
-    }
-  }
-  if(!Array.isArray(siteData.media)) siteData.media=[];
+const base={
+site:{name:"SPORTSOFFICIAL007 LIVE",tagline:"Every Sport. One Destination.",youtube:""},
+popup:{enabled:true,title:"Stay Updated!",message:"Subscribe us for latest updates and information regarding website or any sport.",buttonText:"Subscribe on YouTube",url:""},
+sports:["Cricket","Football","Basketball","Tennis","Hockey","Badminton","Volleyball","Swimming","Athletics","Boxing","Wrestling","Cycling","Table Tennis","Golf","Rugby","Motorsport","Archery","Gymnastics","Baseball","Squash","Weightlifting","Other Sports"],
+matches:[],fixtures:[],results:[],teams:[],players:[],tournaments:[],rankings:[],
+news:[],highlights:[],announcements:[],streaming:[],media:[],
+olympics:{enabled:true,events:[],medals:[]},
+paralympics:{enabled:true,events:[],medals:[]}
+};
+for(const key in base){
+if(siteData[key]===undefined||siteData[key]===null)siteData[key]=base[key];
+}
+if(!Array.isArray(siteData.media))siteData.media=[];
 }
 
 function showStatus(id,message,type){
-  const el=document.getElementById(id);
-  el.textContent=message;
-  el.className="status show "+(type||"");
+const el=document.getElementById(id);
+el.textContent=message;
+el.className="status show "+(type||"");
 }
 
 function openPage(page){
-  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-  document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));
+const nav=document.querySelector('[data-page="'+page+'"]');
+if(nav)nav.classList.add("active");
 
-  const nav=document.querySelector('[data-page="'+page+'"]');
-  if(nav) nav.classList.add("active");
-
-  if(page==="dashboard"){
-    document.getElementById("page-dashboard").classList.add("active");
-    document.getElementById("pageTitle").textContent="Dashboard";
-    updateDashboard();
-    return;
-  }
-
-  if(page==="media"){
-    document.getElementById("page-media").classList.add("active");
-    document.getElementById("pageTitle").textContent="Media Library";
-    renderGallery();
-    return;
-  }
-
-  const config=moduleConfig[page];
-  if(!config) return;
-
-  currentModule=page;
-  document.getElementById("page-editor").classList.add("active");
-  document.getElementById("pageTitle").textContent=config.title;
-  document.getElementById("editorTitle").textContent=config.title;
-  document.getElementById("editorHelp").textContent=config.help;
-  document.getElementById("jsonEditor").value=JSON.stringify(siteData[config.key],null,2);
-  document.getElementById("editorStatus").className="status";
+if(page==="dashboard"){
+document.getElementById("page-dashboard").classList.add("active");
+document.getElementById("pageTitle").textContent="Dashboard";
+updateDashboard();
+return;
+}
+if(page==="media"){
+document.getElementById("page-media").classList.add("active");
+document.getElementById("pageTitle").textContent="Media Library";
+renderGallery();
+return;
+}
+const config=moduleConfig[page];
+if(!config)return;
+currentModule=page;
+document.getElementById("page-editor").classList.add("active");
+document.getElementById("pageTitle").textContent=config.title;
+document.getElementById("editorTitle").textContent=config.title;
+document.getElementById("editorHelp").textContent=config.help;
+document.getElementById("jsonEditor").value=JSON.stringify(siteData[config.key],null,2);
+document.getElementById("editorStatus").className="status";
 }
 
 document.querySelectorAll(".nav button").forEach(button=>{
-  button.addEventListener("click",()=>openPage(button.dataset.page));
+button.addEventListener("click",()=>openPage(button.dataset.page));
 });
 
 document.getElementById("saveLocalButton").addEventListener("click",()=>{
-  const config=moduleConfig[currentModule];
-  try{
-    const parsed=JSON.parse(document.getElementById("jsonEditor").value);
-    if(config.type==="array" && !Array.isArray(parsed)){
-      throw new Error("This section must contain a JSON array [ ].");
-    }
-    if(config.type==="object" && (typeof parsed!=="object" || parsed===null || Array.isArray(parsed))){
-      throw new Error("This section must contain a JSON object { }.");
-    }
-    siteData[config.key]=parsed;
-    showStatus("editorStatus","Changes saved in this browser session. Press Publish Website to update the public website.","good");
-    updateDashboard();
-  }catch(error){
-    showStatus("editorStatus","Invalid JSON: "+error.message,"error");
-  }
+const config=moduleConfig[currentModule];
+try{
+const parsed=JSON.parse(document.getElementById("jsonEditor").value);
+if(config.type==="array"&&!Array.isArray(parsed))throw new Error("This section must contain a JSON array [ ].");
+if(config.type==="object"&&(typeof parsed!=="object"||parsed===null||Array.isArray(parsed)))throw new Error("This section must contain a JSON object { }.");
+siteData[config.key]=parsed;
+showStatus("editorStatus","Changes saved in this browser session. Press Publish Website to update the public website.","good");
+updateDashboard();
+}catch(error){
+showStatus("editorStatus","Invalid JSON: "+error.message,"error");
+}
 });
 
 document.getElementById("resetEditorButton").addEventListener("click",()=>{
-  const config=moduleConfig[currentModule];
-  document.getElementById("jsonEditor").value=JSON.stringify(siteData[config.key],null,2);
-  showStatus("editorStatus","Editor reset to the last locally saved data.","");
+const config=moduleConfig[currentModule];
+document.getElementById("jsonEditor").value=JSON.stringify(siteData[config.key],null,2);
+showStatus("editorStatus","Editor reset to the last locally saved data.","");
 });
 
 function updateDashboard(){
-  const count=(key)=>Array.isArray(siteData[key])?siteData[key].length:0;
-  document.getElementById("countMatches").textContent=count("matches");
-  document.getElementById("countFixtures").textContent=count("fixtures");
-  document.getElementById("countResults").textContent=count("results");
-  document.getElementById("countMedia").textContent=count("media");
+const count=key=>Array.isArray(siteData[key])?siteData[key].length:0;
+document.getElementById("countMatches").textContent=count("matches");
+document.getElementById("countFixtures").textContent=count("fixtures");
+document.getElementById("countResults").textContent=count("results");
+document.getElementById("countMedia").textContent=count("media");
 }
 
 function buildModuleCards(){
-  const container=document.getElementById("moduleCards");
-  container.replaceChildren();
-
-  Object.keys(moduleConfig).forEach(key=>{
-    const card=document.createElement("div");
-    card.className="card module-card";
-    const title=document.createElement("strong");
-    title.textContent=moduleConfig[key].title;
-    const desc=document.createElement("span");
-    desc.className="muted";
-    desc.textContent="Open and manage this section";
-    card.append(title,desc);
-    card.addEventListener("click",()=>openPage(key));
-    container.appendChild(card);
-  });
-  const media=document.createElement("div");
-  media.className="card module-card";
-  media.innerHTML="<strong>Media Library</strong><span class='muted'>Upload and manage photos</span>";
-  media.addEventListener("click",()=>openPage("media"));
-  container.appendChild(media);
+const container=document.getElementById("moduleCards");
+container.replaceChildren();
+Object.keys(moduleConfig).forEach(key=>{
+const card=document.createElement("div");
+card.className="card module-card";
+const title=document.createElement("strong");
+title.textContent=moduleConfig[key].title;
+const desc=document.createElement("span");
+desc.className="muted";
+desc.textContent="Open and manage this section";
+card.append(title,desc);
+card.addEventListener("click",()=>openPage(key));
+container.appendChild(card);
+});
+const media=document.createElement("div");
+media.className="card module-card";
+const mediaTitle=document.createElement("strong");
+mediaTitle.textContent="Media Library";
+const mediaDesc=document.createElement("span");
+mediaDesc.className="muted";
+mediaDesc.textContent="Upload and manage photos";
+media.append(mediaTitle,mediaDesc);
+media.addEventListener("click",()=>openPage("media"));
+container.appendChild(media);
 }
 
 async function loadWebsite(){
-  try{
-    const response=await fetch("./data/site-content.json?time="+Date.now(),{cache:"no-store"});
-    if(!response.ok) throw new Error("Could not load website data. HTTP "+response.status);
-    siteData=await response.json();
-    defaults();
-    updateDashboard();
-    renderGallery();
-    showStatus("uploadStatus","Website data loaded.","good");
-  }catch(error){
-    siteData={};
-    defaults();
-    updateDashboard();
-    renderGallery();
-    alert("Website data could not be loaded: "+error.message);
-  }
+try{
+const response=await fetch("./data/site-content.json?time="+Date.now(),{cache:"no-store"});
+if(!response.ok)throw new Error("Could not load website data. HTTP "+response.status);
+siteData=await response.json();
+defaults();
+updateDashboard();
+renderGallery();
+}catch(error){
+siteData={};
+defaults();
+updateDashboard();
+renderGallery();
+alert("Website data could not be loaded: "+error.message);
+}
 }
 
 async function publishWebsite(){
-  const password=prompt("Enter your existing Admin Password to publish the website:");
-  if(password===null) return;
-  if(!password){alert("Password is required.");return;}
+const password=prompt("Enter your existing Admin Password to publish the website:");
+if(password===null)return;
+if(!password){alert("Password is required.");return;}
 
-  const button=document.getElementById("publishButton");
-  button.disabled=true;
-  button.textContent="Publishing...";
-
-  try{
-    const response=await fetch(API_PUBLISH,{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({adminPassword:password,siteData:siteData})
-    });
-    const result=await response.json().catch(()=>({}));
-    if(!response.ok) throw new Error(result.error||result.message||"Publishing failed. HTTP "+response.status);
-    alert(result.message||"Website data published successfully!");
-  }catch(error){
-    alert("Publishing failed: "+error.message);
-  }finally{
-    button.disabled=false;
-    button.textContent="Publish Website";
-  }
+const button=document.getElementById("publishButton");
+button.disabled=true;
+button.textContent="Publishing...";
+try{
+const response=await fetch(API_PUBLISH,{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({adminPassword:password,siteData:siteData})
+});
+const result=await response.json().catch(()=>({}));
+if(!response.ok)throw new Error(result.error||result.message||"Publishing failed. HTTP "+response.status);
+alert(result.message||"Website data published successfully!");
+}catch(error){
+alert("Publishing failed: "+error.message);
+}finally{
+button.disabled=false;
+button.textContent="Publish Website";
+}
 }
 
 document.getElementById("mediaFile").addEventListener("change",event=>{
-  selectedFile=event.target.files && event.target.files[0] ? event.target.files[0] : null;
-  const preview=document.getElementById("imagePreview");
-  preview.style.display="none";
+selectedFile=event.target.files&&event.target.files[0]?event.target.files[0]:null;
+const preview=document.getElementById("imagePreview");
+preview.style.display="none";
+if(!selectedFile)return;
 
-  if(!selectedFile) return;
-
-  const allowed=["image/jpeg","image/png","image/webp"];
-  if(!allowed.includes(selectedFile.type)){
-    alert("Please select a JPEG, PNG or WebP image.");
-    event.target.value="";
-    selectedFile=null;
-    return;
-  }
-  if(selectedFile.size>2.5*1024*1024){
-    alert("Please select an image smaller than 2.5 MB.");
-    event.target.value="";
-    selectedFile=null;
-    return;
-  }
-
-  preview.src=URL.createObjectURL(selectedFile);
-  preview.style.display="block";
-  if(!document.getElementById("mediaTitle").value){
-    document.getElementById("mediaTitle").value=selectedFile.name.replace(/\.[^.]+$/,"");
-  }
+const allowed=["image/jpeg","image/png","image/webp"];
+if(!allowed.includes(selectedFile.type)){
+alert("Please select a JPEG, PNG or WebP image.");
+event.target.value="";
+selectedFile=null;
+return;
+}
+if(selectedFile.size>2.5*1024*1024){
+alert("Please select an image smaller than 2.5 MB.");
+event.target.value="";
+selectedFile=null;
+return;
+}
+preview.src=URL.createObjectURL(selectedFile);
+preview.style.display="block";
+if(!document.getElementById("mediaTitle").value){
+document.getElementById("mediaTitle").value=selectedFile.name.replace(/\.[^.]+$/,"");
+}
 });
 
 function readAsDataURL(file){
-  return new Promise((resolve,reject)=>{
-    const reader=new FileReader();
-    reader.onload=()=>resolve(reader.result);
-    reader.onerror=()=>reject(new Error("Could not read the selected image."));
-    reader.readAsDataURL(file);
-  });
+return new Promise((resolve,reject)=>{
+const reader=new FileReader();
+reader.onload=()=>resolve(reader.result);
+reader.onerror=()=>reject(new Error("Could not read the selected image."));
+reader.readAsDataURL(file);
+});
 }
 
 async function uploadImage(){
-  if(!selectedFile){
-    alert("Please select an image first.");
-    return;
-  }
+if(!selectedFile){
+alert("Please select an image first.");
+return;
+}
+const password=prompt("Enter your existing Admin Password to upload this photo:");
+if(password===null)return;
+if(!password){alert("Password is required.");return;}
 
-  const password=prompt("Enter your existing Admin Password to upload this photo:");
-  if(password===null) return;
-  if(!password){alert("Password is required.");return;}
+const button=document.getElementById("uploadButton");
+button.disabled=true;
+button.textContent="Uploading...";
+showStatus("uploadStatus","Uploading image to your repository...","");
+try{
+const dataURL=await readAsDataURL(selectedFile);
+const base64=dataURL.split(",")[1];
+if(!base64)throw new Error("Could not prepare the image.");
 
-  const button=document.getElementById("uploadButton");
-  button.disabled=true;
-  button.textContent="Uploading...";
-  showStatus("uploadStatus","Uploading image to your repository...","");
+const response=await fetch(API_UPLOAD,{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({
+adminPassword:password,
+mimeType:selectedFile.type,
+imageBase64:base64
+})
+});
+const result=await response.json().catch(()=>({}));
+if(!response.ok)throw new Error(result.error||result.message||"Upload failed. HTTP "+response.status);
+if(!result.imageUrl)throw new Error("The upload response did not contain an image URL.");
 
-  try{
-    const dataURL=await readAsDataURL(selectedFile);
-    const base64=dataURL.split(",")[1];
-    if(!base64) throw new Error("Could not prepare the image.");
+if(!Array.isArray(siteData.media))siteData.media=[];
+siteData.media.unshift({
+filename:result.filename||selectedFile.name,
+path:result.path||"",
+url:result.imageUrl,
+title:document.getElementById("mediaTitle").value.trim()||selectedFile.name,
+category:document.getElementById("mediaCategory").value,
+uploadedAt:new Date().toISOString()
+});
+renderGallery();
+updateDashboard();
+showStatus("uploadStatus","Photo uploaded successfully! Press Publish Website to save the Media Library list.","good");
 
-    const response=await fetch(API_UPLOAD,{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({
-        adminPassword:password,
-        m
+document.getElementById("mediaFile").value="";
+document.getElementById("mediaTitle").value="";
+document.getElementById("imagePreview").style.display="none";
+selectedFile=null;
+}catch(error){
+showStatus("uploadStatus","Upload failed: "+error.message,"error");
+}finally{
+button.disabled=false;
+button.textContent="Upload Photo";
+}
+}
+
+function renderGallery(){
+const gallery=document.getElementById("mediaGallery");
+gallery.replaceChildren();
+const items=Array.isArray(siteData.media)?siteData.media:[];
+if(items.length===0){
+const empty=document.createElement("div");
+empty.className="empty";
+empty.textContent="No uploaded photos yet. Upload your first photo above.";
+gallery.appendChild(empty);
+return;
+}
+items.forEach((item,index)=>{
+if(!item||typeof item.url!=="string"||!item.url.startsWith("https://raw.githubusercontent.com/"))return;
+const card=document.createElement("div");
+card.className="media-card";
+const img=document.createElement("img");
+img.src=item.url;
+img.alt=item.title||"Uploaded image";
+img.loading="lazy";
+const info=document.createElement("div");
+info.className="media-info";
+const title=document.createElement("strong");
+title.textContent=item.title||item.filename||"Untitled image";
+const category=document.createElement("small");
+category.textContent=item.category||"Other";
+const actions=document.createElement("div");
+actions.className="media-actions";
+const copy=document.createElement("button");
+copy.className="btn";
+copy.textContent="Copy URL";
+copy.addEventListener("click",async()=>{
+try{
+await navigator.clipboard.writeText(item.url);
+alert("Image URL copied!");
+}catch(error){
+prompt("Copy this image URL:",item.url);
+}
+});
+const remove=document.createElement("button");
+remove.className="btn danger";
+remove.textContent="Remove";
+remove.addEventListener("click",()=>{
+if(!confirm("Remove this photo from the Media Library list? The uploaded file will remain in your GitHub repository."))return;
+siteData.media.splice(index,1);
+renderGallery();
+updateDashboard();
+});
+actions.append(copy,remove);
+info.append(title,category,actions);
+card.append(img,info);
+gallery.appendChild(card);
+});
+}
+
+buildModuleCards();
+loadWebsite();
+</script>
+</body>
+</html>
