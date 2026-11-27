@@ -35,7 +35,18 @@
     "Weightlifting",
     "Other Sports"
   ],
-  "matches": [],
+  "matches": [
+    {
+      "sport": "Cricket",
+      "teamA": "INDIA",
+      "teamB": "NEW ZEALAND",
+      "score": "DAY 1",
+      "date": "2026-11-27",
+      "time": "3Am",
+      "detail": "Hagley Oval, Christchurch",
+      "url": "https://cricking.pages.dev/?id=hindi"
+    }
+  ],
   "fixtures": [],
   "results": [],
   "olympics": {
