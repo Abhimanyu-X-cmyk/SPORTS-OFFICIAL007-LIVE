@@ -60,5 +60,21 @@
     "medals": []
   },
   "highlights": [],
-  "announcements": []
+  "announcements": [],
+  "teams": [],
+  "players": [],
+  "tournaments": [],
+  "rankings": [],
+  "news": [],
+  "streaming": [],
+  "media": [
+    {
+      "filename": "d5570378-c8e0-4d1a-b5e8-6a022c8a4d24.jpg",
+      "path": "media/d5570378-c8e0-4d1a-b5e8-6a022c8a4d24.jpg",
+      "url": "https://raw.githubusercontent.com/Abhimanyu-X-cmyk/SPORTS-OFFICIAL007-LIVE/main/media/d5570378-c8e0-4d1a-b5e8-6a022c8a4d24.jpg",
+      "title": "SPORTSOFFICIAL007 OFFICIAL LOGO",
+      "category": "Other",
+      "uploadedAt": "2026-11-28T13:01:40.572Z"
+    }
+  ]
 }
