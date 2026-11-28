@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -201,7 +200,6 @@ h3{font-size:14px;margin:0 0 12px}
 </main>
 </div>
 
-
 <script>
 "use strict";
 
@@ -211,23 +209,24 @@ const API_UPLOAD="./api/upload";
 let siteData={};
 let currentModule="matches";
 let selectedFile=null;
+let previewURL=null;
 
 const moduleConfig={
-matches:{title:"Live Matches",key:"matches",type:"array",help:"Add live match records. Keep the fields used by your public website."},
-fixtures:{title:"Fixtures",key:"fixtures",type:"array",help:"Manage upcoming match schedules."},
-results:{title:"Results",key:"results",type:"array",help:"Manage completed match results."},
-teams:{title:"Teams",key:"teams",type:"array",help:"Add team information and logo URLs."},
-players:{title:"Players",key:"players",type:"array",help:"Add player information and photo URLs."},
-tournaments:{title:"Tournaments",key:"tournaments",type:"array",help:"Manage tournament details."},
-rankings:{title:"Rankings",key:"rankings",type:"array",help:"Manage sports rankings."},
-news:{title:"Sports News",key:"news",type:"array",help:"Manage sports news articles and image URLs."},
-highlights:{title:"Highlights",key:"highlights",type:"array",help:"Manage authorised highlights and video links."},
-announcements:{title:"Announcements",key:"announcements",type:"array",help:"Manage website announcements."},
-streaming:{title:"Streaming Links",key:"streaming",type:"array",help:"Add official or authorised streaming links only."},
-olympics:{title:"Olympics",key:"olympics",type:"object",help:"Edit Olympics settings, events and medal information."},
-paralympics:{title:"Paralympics",key:"paralympics",type:"object",help:"Edit Paralympics settings, events and medal information."},
-site:{title:"Website Settings",key:"site",type:"object",help:"Change website name, tagline and social links."},
-popup:{title:"Popup Settings",key:"popup",type:"object",help:"Edit the visitor popup and its button."}
+matches:{title:"Live Matches",key:"matches",type:"array"},
+fixtures:{title:"Fixtures",key:"fixtures",type:"array"},
+results:{title:"Results",key:"results",type:"array"},
+teams:{title:"Teams",key:"teams",type:"array"},
+players:{title:"Players",key:"players",type:"array"},
+tournaments:{title:"Tournaments",key:"tournaments",type:"array"},
+rankings:{title:"Rankings",key:"rankings",type:"array"},
+news:{title:"Sports News",key:"news",type:"array"},
+highlights:{title:"Highlights",key:"highlights",type:"array"},
+announcements:{title:"Announcements",key:"announcements",type:"array"},
+streaming:{title:"Streaming Links",key:"streaming",type:"array"},
+olympics:{title:"Olympics",key:"olympics",type:"object"},
+paralympics:{title:"Paralympics",key:"paralympics",type:"object"},
+site:{title:"Website Settings",key:"site",type:"object"},
+popup:{title:"Popup Settings",key:"popup",type:"object"}
 };
 
 function defaults(){
@@ -241,7 +240,9 @@ olympics:{enabled:true,events:[],medals:[]},
 paralympics:{enabled:true,events:[],medals:[]}
 };
 for(const key in base){
-if(siteData[key]===undefined||siteData[key]===null)siteData[key]=base[key];
+if(siteData[key]===undefined||siteData[key]===null){
+siteData[key]=base[key];
+}
 }
 if(!Array.isArray(siteData.media))siteData.media=[];
 }
@@ -255,6 +256,7 @@ el.className="status show "+(type||"");
 function openPage(page){
 document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
 document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));
+
 const nav=document.querySelector('[data-page="'+page+'"]');
 if(nav)nav.classList.add("active");
 
@@ -264,19 +266,22 @@ document.getElementById("pageTitle").textContent="Dashboard";
 updateDashboard();
 return;
 }
+
 if(page==="media"){
 document.getElementById("page-media").classList.add("active");
 document.getElementById("pageTitle").textContent="Media Library";
 renderGallery();
 return;
 }
+
 const config=moduleConfig[page];
 if(!config)return;
+
 currentModule=page;
 document.getElementById("page-editor").classList.add("active");
 document.getElementById("pageTitle").textContent=config.title;
 document.getElementById("editorTitle").textContent=config.title;
-document.getElementById("editorHelp").textContent=config.help;
+document.getElementById("editorHelp").textContent="Edit the JSON data below. Keep the JSON format valid.";
 document.getElementById("jsonEditor").value=JSON.stringify(siteData[config.key],null,2);
 document.getElementById("editorStatus").className="status";
 }
@@ -287,13 +292,22 @@ button.addEventListener("click",()=>openPage(button.dataset.page));
 
 document.getElementById("saveLocalButton").addEventListener("click",()=>{
 const config=moduleConfig[currentModule];
+
 try{
 const parsed=JSON.parse(document.getElementById("jsonEditor").value);
-if(config.type==="array"&&!Array.isArray(parsed))throw new Error("This section must contain a JSON array [ ].");
-if(config.type==="object"&&(typeof parsed!=="object"||parsed===null||Array.isArray(parsed)))throw new Error("This section must contain a JSON object { }.");
+
+if(config.type==="array"&&!Array.isArray(parsed)){
+throw new Error("This section must contain a JSON array [ ].");
+}
+
+if(config.type==="object"&&(typeof parsed!=="object"||parsed===null||Array.isArray(parsed))){
+throw new Error("This section must contain a JSON object { }.");
+}
+
 siteData[config.key]=parsed;
-showStatus("editorStatus","Changes saved in this browser session. Press Publish Website to update the public website.","good");
+showStatus("editorStatus","Changes saved in this browser session. Press Publish Website to publish them.","good");
 updateDashboard();
+
 }catch(error){
 showStatus("editorStatus","Invalid JSON: "+error.message,"error");
 }
@@ -302,7 +316,7 @@ showStatus("editorStatus","Invalid JSON: "+error.message,"error");
 document.getElementById("resetEditorButton").addEventListener("click",()=>{
 const config=moduleConfig[currentModule];
 document.getElementById("jsonEditor").value=JSON.stringify(siteData[config.key],null,2);
-showStatus("editorStatus","Editor reset to the last locally saved data.","");
+showStatus("editorStatus","Editor reset to the last saved data.","");
 });
 
 function updateDashboard(){
@@ -316,26 +330,34 @@ document.getElementById("countMedia").textContent=count("media");
 function buildModuleCards(){
 const container=document.getElementById("moduleCards");
 container.replaceChildren();
+
 Object.keys(moduleConfig).forEach(key=>{
 const card=document.createElement("div");
 card.className="card module-card";
+
 const title=document.createElement("strong");
 title.textContent=moduleConfig[key].title;
+
 const desc=document.createElement("span");
 desc.className="muted";
 desc.textContent="Open and manage this section";
+
 card.append(title,desc);
 card.addEventListener("click",()=>openPage(key));
 container.appendChild(card);
 });
+
 const media=document.createElement("div");
 media.className="card module-card";
-const mediaTitle=document.createElement("strong");
-mediaTitle.textContent="Media Library";
-const mediaDesc=document.createElement("span");
-mediaDesc.className="muted";
-mediaDesc.textContent="Upload and manage photos";
-media.append(mediaTitle,mediaDesc);
+
+const title=document.createElement("strong");
+title.textContent="Media Library";
+
+const desc=document.createElement("span");
+desc.className="muted";
+desc.textContent="Upload and manage photos";
+
+media.append(title,desc);
 media.addEventListener("click",()=>openPage("media"));
 container.appendChild(media);
 }
@@ -343,11 +365,16 @@ container.appendChild(media);
 async function loadWebsite(){
 try{
 const response=await fetch("./data/site-content.json?time="+Date.now(),{cache:"no-store"});
-if(!response.ok)throw new Error("Could not load website data. HTTP "+response.status);
+
+if(!response.ok){
+throw new Error("Could not load website data. HTTP "+response.status);
+}
+
 siteData=await response.json();
 defaults();
 updateDashboard();
 renderGallery();
+
 }catch(error){
 siteData={};
 defaults();
@@ -359,21 +386,35 @@ alert("Website data could not be loaded: "+error.message);
 
 async function publishWebsite(){
 const password=prompt("Enter your existing Admin Password to publish the website:");
+
 if(password===null)return;
-if(!password){alert("Password is required.");return;}
+if(!password){
+alert("Password is required.");
+return;
+}
 
 const button=document.getElementById("publishButton");
 button.disabled=true;
 button.textContent="Publishing...";
+
 try{
 const response=await fetch(API_PUBLISH,{
 method:"POST",
 headers:{"Content-Type":"application/json"},
-body:JSON.stringify({adminPassword:password,siteData:siteData})
+body:JSON.stringify({
+adminPassword:password,
+siteData:siteData
+})
 });
+
 const result=await response.json().catch(()=>({}));
-if(!response.ok)throw new Error(result.error||result.message||"Publishing failed. HTTP "+response.status);
+
+if(!response.ok){
+throw new Error(result.error||result.message||"Publishing failed. HTTP "+response.status);
+}
+
 alert(result.message||"Website data published successfully!");
+
 }catch(error){
 alert("Publishing failed: "+error.message);
 }finally{
@@ -382,58 +423,119 @@ button.textContent="Publish Website";
 }
 }
 
+/* IMAGE SELECTION */
+
 document.getElementById("mediaFile").addEventListener("change",event=>{
 selectedFile=event.target.files&&event.target.files[0]?event.target.files[0]:null;
+
 const preview=document.getElementById("imagePreview");
 preview.style.display="none";
+
+if(previewURL){
+URL.revokeObjectURL(previewURL);
+previewURL=null;
+}
+
 if(!selectedFile)return;
 
 const allowed=["image/jpeg","image/png","image/webp"];
+
 if(!allowed.includes(selectedFile.type)){
 alert("Please select a JPEG, PNG or WebP image.");
 event.target.value="";
 selectedFile=null;
 return;
 }
+
 if(selectedFile.size>2.5*1024*1024){
 alert("Please select an image smaller than 2.5 MB.");
 event.target.value="";
 selectedFile=null;
 return;
 }
-preview.src=URL.createObjectURL(selectedFile);
+
+previewURL=URL.createObjectURL(selectedFile);
+preview.src=previewURL;
 preview.style.display="block";
+
 if(!document.getElementById("mediaTitle").value){
 document.getElementById("mediaTitle").value=selectedFile.name.replace(/\.[^.]+$/,"");
 }
 });
 
-function readAsDataURL(file){
-return new Promise((resolve,reject)=>{
+/* IMPROVED IMAGE READER */
+
+async function readAsDataURL(file){
+if(!file)throw new Error("No image selected.");
+
+try{
+if(typeof file.arrayBuffer==="function"){
+const buffer=await file.arrayBuffer();
+const bytes=new Uint8Array(buffer);
+let binary="";
+const chunkSize=8192;
+
+for(let i=0;i<bytes.length;i+=chunkSize){
+binary+=String.fromCharCode(...bytes.subarray(i,i+chunkSize));
+}
+
+return "data:"+file.type+";base64,"+btoa(binary);
+}
+
+return await new Promise((resolve,reject)=>{
 const reader=new FileReader();
-reader.onload=()=>resolve(reader.result);
-reader.onerror=()=>reject(new Error("Could not read the selected image."));
+
+reader.onload=()=>{
+if(typeof reader.result!=="string"){
+reject(new Error("Invalid image data."));
+return;
+}
+resolve(reader.result);
+};
+
+reader.onerror=()=>{
+reject(new Error("Browser could not access image data."));
+};
+
 reader.readAsDataURL(file);
 });
+
+}catch(error){
+throw new Error("Could not read the selected image. Please select it again.");
 }
+}
+
+/* UPLOAD IMAGE */
 
 async function uploadImage(){
 if(!selectedFile){
 alert("Please select an image first.");
 return;
 }
+
 const password=prompt("Enter your existing Admin Password to upload this photo:");
+
 if(password===null)return;
-if(!password){alert("Password is required.");return;}
+if(!password){
+alert("Password is required.");
+return;
+}
 
 const button=document.getElementById("uploadButton");
 button.disabled=true;
 button.textContent="Uploading...";
-showStatus("uploadStatus","Uploading image to your repository...","");
+
+showStatus("uploadStatus","Preparing image...","");
+
 try{
 const dataURL=await readAsDataURL(selectedFile);
 const base64=dataURL.split(",")[1];
-if(!base64)throw new Error("Could not prepare the image.");
+
+if(!base64){
+throw new Error("Could not prepare the image data.");
+}
+
+showStatus("uploadStatus","Sending image to your upload API...","");
 
 const response=await fetch(API_UPLOAD,{
 method:"POST",
@@ -444,11 +546,19 @@ mimeType:selectedFile.type,
 imageBase64:base64
 })
 });
+
 const result=await response.json().catch(()=>({}));
-if(!response.ok)throw new Error(result.error||result.message||"Upload failed. HTTP "+response.status);
-if(!result.imageUrl)throw new Error("The upload response did not contain an image URL.");
+
+if(!response.ok){
+throw new Error(result.error||result.message||"Upload failed. HTTP "+response.status);
+}
+
+if(!result.imageUrl){
+throw new Error("The upload API did not return an image URL.");
+}
 
 if(!Array.isArray(siteData.media))siteData.media=[];
+
 siteData.media.unshift({
 filename:result.filename||selectedFile.name,
 path:result.path||"",
@@ -457,14 +567,23 @@ title:document.getElementById("mediaTitle").value.trim()||selectedFile.name,
 category:document.getElementById("mediaCategory").value,
 uploadedAt:new Date().toISOString()
 });
+
 renderGallery();
 updateDashboard();
-showStatus("uploadStatus","Photo uploaded successfully! Press Publish Website to save the Media Library list.","good");
+
+showStatus("uploadStatus","Photo uploaded successfully! Now press Publish Website to save its Media Library details.","good");
 
 document.getElementById("mediaFile").value="";
 document.getElementById("mediaTitle").value="";
 document.getElementById("imagePreview").style.display="none";
+
+if(previewURL){
+URL.revokeObjectURL(previewURL);
+previewURL=null;
+}
+
 selectedFile=null;
+
 }catch(error){
 showStatus("uploadStatus","Upload failed: "+error.message,"error");
 }finally{
@@ -473,10 +592,14 @@ button.textContent="Upload Photo";
 }
 }
 
+/* MEDIA GALLERY */
+
 function renderGallery(){
 const gallery=document.getElementById("mediaGallery");
 gallery.replaceChildren();
+
 const items=Array.isArray(siteData.media)?siteData.media:[];
+
 if(items.length===0){
 const empty=document.createElement("div");
 empty.className="empty";
@@ -484,25 +607,36 @@ empty.textContent="No uploaded photos yet. Upload your first photo above.";
 gallery.appendChild(empty);
 return;
 }
+
 items.forEach((item,index)=>{
-if(!item||typeof item.url!=="string"||!item.url.startsWith("https://raw.githubusercontent.com/"))return;
+if(!item||typeof item.url!=="string"||!item.url.startsWith("https://raw.githubusercontent.com/")){
+return;
+}
+
 const card=document.createElement("div");
 card.className="media-card";
+
 const img=document.createElement("img");
 img.src=item.url;
 img.alt=item.title||"Uploaded image";
 img.loading="lazy";
+
 const info=document.createElement("div");
 info.className="media-info";
+
 const title=document.createElement("strong");
 title.textContent=item.title||item.filename||"Untitled image";
+
 const category=document.createElement("small");
 category.textContent=item.category||"Other";
+
 const actions=document.createElement("div");
 actions.className="media-actions";
+
 const copy=document.createElement("button");
 copy.className="btn";
 copy.textContent="Copy URL";
+
 copy.addEventListener("click",async()=>{
 try{
 await navigator.clipboard.writeText(item.url);
@@ -511,15 +645,21 @@ alert("Image URL copied!");
 prompt("Copy this image URL:",item.url);
 }
 });
+
 const remove=document.createElement("button");
 remove.className="btn danger";
 remove.textContent="Remove";
+
 remove.addEventListener("click",()=>{
-if(!confirm("Remove this photo from the Media Library list? The uploaded file will remain in your GitHub repository."))return;
+if(!confirm("Remove this photo from the Media Library list? The uploaded file will remain in your GitHub repository.")){
+return;
+}
+
 siteData.media.splice(index,1);
 renderGallery();
 updateDashboard();
 });
+
 actions.append(copy,remove);
 info.append(title,category,actions);
 card.append(img,info);
@@ -529,6 +669,7 @@ gallery.appendChild(card);
 
 buildModuleCards();
 loadWebsite();
+
 </script>
 </body>
 </html>
